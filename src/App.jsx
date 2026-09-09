@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowUpRight, ExternalLink, Mail, Menu, X } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
@@ -8,7 +8,7 @@ const experience = [
     number: "01",
     dates: "JAN 2025 — PRESENT",
     role: "AI/ML ENGINEER",
-    company: "COLOGIX, INC.",
+    company: "Lucid Compliance",
     location: "NEW JERSEY · REMOTE",
     description:
       "Developed Python-based automation and data-processing workflows supporting AI/ML initiatives.",
