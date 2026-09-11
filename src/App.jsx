@@ -2,6 +2,7 @@ import { ArrowDownRight, ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
+import heroImage from "./assets/pavan.png";
 
 const experience = [
   {
@@ -283,7 +284,11 @@ function App() {
                 <span className="hero-line">SAGAR</span>
                 <span className="hero-line red">TELAPROLU</span>
               </h1>
-
+<img
+  src={heroImage}
+  alt="Pavan Sagar Telaprolu"
+  className="hero-genemoji"
+/>
               <div className="hero-tags">
                 AI/ML ENGINEER <i>•</i> SOFTWARE ENGINEER <i>•</i> CLOUD
               </div>
