@@ -1,4 +1,5 @@
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const projectData = {
@@ -61,7 +62,7 @@ const projectData = {
     dates: "JAN 2024 — MAY 2024",
     description:
       "A conversational AI web application built to explore API integration and interactive AI-powered workflows.",
-    tech: ["PYTHON", "APIs", "WEB APPLICATION"],
+    tech: ["PYTHON", "APIS", "WEB APPLICATION"],
     overview:
       "A web application project focused on connecting an interactive frontend with API-based AI functionality.",
     focus: [
@@ -269,6 +270,10 @@ function ProjectCaseStudy() {
 
   const project = projectData[slug];
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [slug]);
+
   if (!project) {
     return (
       <div className="case-study">
@@ -300,7 +305,7 @@ function ProjectCaseStudy() {
       <main>
         <section className="case-hero">
           <div className="label">
-            {project.number} / PROJECT
+            01 / PROJECT {project.number}
           </div>
 
           <small>{project.category}</small>
@@ -371,7 +376,7 @@ function ProjectCaseStudy() {
 
         <section className="case-section">
           <div className="label">
-            {slug === "kaivan" ? "05 / ENGINEERING FOCUS" : "04 / PROJECT FOCUS"}
+            {slug === "kaivan" ? "04 / ENGINEERING FOCUS" : "04 / PROJECT FOCUS"}
           </div>
 
           <div className="focus-list">
@@ -390,7 +395,7 @@ function ProjectCaseStudy() {
         </section>
 
         <section className="case-section">
-          <div className="label">{slug === "kaivan" ? "04 / ARCHITECTURE" : "05 / SYSTEM"}</div>
+          <div className="label">{slug === "kaivan" ? "05 / ARCHITECTURE" : "05 / SYSTEM"}</div>
 
           <div className={`architecture large ${slug === "kaivan" ? "kaivan-architecture" : ""}`}>
             <div>CLIENT</div>
@@ -403,7 +408,7 @@ function ProjectCaseStudy() {
         </section>
 
         <section className="case-final">
-          <div className="label">{slug === "kaivan" ? "06 / NEXT" : "06 / NEXT"}</div>
+          <div className="label">06 / NEXT</div>
 
           <h2>
             BUILD.

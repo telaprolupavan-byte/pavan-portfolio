@@ -2,14 +2,14 @@ import { ArrowDownRight, ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
-import heroImage from "./assets/pavan.png";
+import heroImage from "./assets/pavan.webp";
 
 const experience = [
   {
     number: "01",
     dates: "JAN 2025 — PRESENT",
     role: "AI/ML ENGINEER",
-    company: "Lucid Compliance",
+    company: "LUCID COMPLIANCE",
     location: "NEW JERSEY · REMOTE",
     description:
       "Developed Python-based automation and data-processing workflows supporting AI/ML initiatives.",
@@ -49,7 +49,7 @@ const kaivan = {
   number: "01",
   title: "KAIVAN",
   category: "DATA-DRIVEN BUSINESS PLATFORM",
-  year: "MARCH 2026 — PRESENT",
+  year: "MAR 2026 — PRESENT",
   description:
     "A full-stack platform focused on business workflows, authentication, APIs, data management, and maintainable software architecture.",
   tech: ["JAVA", "SPRING BOOT", "MONGODB", "REST API"],
@@ -284,11 +284,13 @@ function App() {
                 <span className="hero-line">SAGAR</span>
                 <span className="hero-line red">TELAPROLU</span>
               </h1>
-<img
-  src={heroImage}
-  alt="Pavan Sagar Telaprolu"
-  className="hero-genemoji"
-/>
+
+              <img
+                src={heroImage}
+                alt="Pavan Sagar Telaprolu"
+                className="hero-genemoji"
+              />
+
               <div className="hero-tags">
                 AI/ML ENGINEER <i>•</i> SOFTWARE ENGINEER <i>•</i> CLOUD
               </div>
