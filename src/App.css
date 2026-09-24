@@ -2109,7 +2109,8 @@ footer {
   .hero-genemoji {
     height: clamp(90px, calc(16.7vw + 26px), 145px);
     left: 57%;
-    top: 255px;
+    /* rest the image on the TELAPROLU line: line top minus image height */
+    top: calc(min(22px + 27vw, 173px) + 5px - clamp(90px, calc(16.7vw + 26px), 145px));
   }
 
   .interface-back {

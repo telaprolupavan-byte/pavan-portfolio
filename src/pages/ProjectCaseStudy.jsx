@@ -271,7 +271,7 @@ function ProjectCaseStudy() {
   const project = projectData[slug];
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [slug]);
 
   if (!project) {
@@ -305,7 +305,7 @@ function ProjectCaseStudy() {
       <main>
         <section className="case-hero">
           <div className="label">
-            {project.number} / PROJECT
+            01 / PROJECT {project.number}
           </div>
 
           <small>{project.category}</small>

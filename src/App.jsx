@@ -2,7 +2,7 @@ import { ArrowDownRight, ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
-import heroImage from "./assets/pavan.png";
+import heroImage from "./assets/pavan.webp";
 
 const experience = [
   {

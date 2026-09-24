@@ -1,16 +1,45 @@
-# React + Vite
+# Pavan Sagar Telaprolu — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio for Pavan Sagar Telaprolu, Software Engineer working across AI/ML, backend systems, data and cloud infrastructure.
 
-Currently, two official plugins are available:
+Built with React 19, Vite and React Router, with icons from `lucide-react`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Getting started
 
-## React Compiler
+Requires Node.js 20.19+ or 22.12+.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev      # start the dev server at http://localhost:5173
+```
 
-## Expanding the ESLint configuration
+## Scripts
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Command           | Description                              |
+| ----------------- | ---------------------------------------- |
+| `npm run dev`     | Start the Vite dev server with HMR       |
+| `npm run build`   | Build the production bundle into `dist/` |
+| `npm run preview` | Serve the production build locally       |
+| `npm run lint`    | Run ESLint                               |
+
+## Project structure
+
+```
+src/
+  main.jsx                   Router setup ("/" and "/projects/:slug")
+  App.jsx                    Home page and its content (experience, stack, projects, education)
+  App.css                    Styles for the home and case study pages
+  pages/ProjectCaseStudy.jsx Case study page and per-project content, keyed by slug
+  assets/                    Images
+public/                      Static files copied as-is (favicon, hosting rewrites)
+```
+
+To add a project, add an entry to `projects` in `src/App.jsx` and a matching entry, keyed by the same `slug`, to `projectData` in `src/pages/ProjectCaseStudy.jsx`.
+
+## Deployment
+
+The site is a single-page app, so the host must serve `index.html` for every path so that case study URLs such as `/projects/kaivan` work on refresh.
+
+- **Vercel**: handled by `vercel.json`.
+- **Netlify** (and Cloudflare Pages): handled by `public/_redirects`.
+- **Other hosts**: configure a rewrite of all paths to `/index.html`.
