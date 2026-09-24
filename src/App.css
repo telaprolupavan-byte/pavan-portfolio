@@ -2105,29 +2105,12 @@ footer {
     margin-right: 0;
     padding-bottom: 52px;
   }
-.hero-genemoji {
-  position: absolute;
-  z-index: 10;
-  width: auto;
-  height: clamp(90px, calc(16.7vw + 26px), 145px);
-  left: 57%;
-  top: 255px;
-  object-fit: contain;
-  pointer-events: none;
-  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.5));
-  animation: genemoji-float 5s ease-in-out infinite;
-}
 
-@keyframes genemoji-float {
-  0%,
-  100% {
-    transform: translateY(0);
+  .hero-genemoji {
+    height: clamp(90px, calc(16.7vw + 26px), 145px);
+    left: 57%;
+    top: 255px;
   }
-
-  50% {
-    transform: translateY(-8px);
-  }
-}
 
   .interface-back {
     display: none;
