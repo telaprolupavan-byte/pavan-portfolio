@@ -1,0 +1,10 @@
+# Build settings for Netlify. The "Ask about Pavan" assistant lives in
+# netlify/functions/ask.mjs and needs ANTHROPIC_API_KEY set in the site's
+# environment variables (Site configuration > Environment variables).
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
