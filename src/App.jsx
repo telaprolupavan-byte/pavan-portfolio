@@ -236,7 +236,7 @@ function App() {
             <a href="https://github.com/telaprolupavan-byte" target="_blank" rel="noreferrer">
               GITHUB<span className="arrow-out">↗</span>
             </a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+            <a href="https://www.linkedin.com/in/pavan-sagar-telaprolu-52491694/" target="_blank" rel="noreferrer">
               LINKEDIN<span className="arrow-out">↗</span>
             </a>
             <a href="mailto:your.email@example.com">
@@ -710,7 +710,7 @@ function App() {
               <span className="contact-link-label">GITHUB</span>
               <ArrowUpRight size={20} />
             </a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+            <a href="https://www.linkedin.com/in/pavan-sagar-telaprolu-52491694/" target="_blank" rel="noreferrer">
               <span className="contact-link-label">LINKEDIN</span>
               <ArrowUpRight size={20} />
             </a>
@@ -734,7 +734,7 @@ function App() {
           <a href="https://github.com/telaprolupavan-byte" target="_blank" rel="noreferrer">
             GITHUB<span className="arrow-out">↗</span>
           </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+          <a href="https://www.linkedin.com/in/pavan-sagar-telaprolu-52491694/" target="_blank" rel="noreferrer">
             LINKEDIN<span className="arrow-out">↗</span>
           </a>
           <a href="mailto:your.email@example.com">
