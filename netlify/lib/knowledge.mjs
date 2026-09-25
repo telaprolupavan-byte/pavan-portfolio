@@ -4,7 +4,7 @@
 
 import { education, experience, mindset, profile, projects } from "../../src/data/portfolio.js";
 
-const ACRONYMS = { ai: "AI", ml: "ML", rag: "RAG", lfras: "LFRAS", llm: "LLM", api: "API", njit: "NJIT", ddos: "DDoS", unv: "UNV", iway: "iWay" };
+const ACRONYMS = { ai: "AI", ml: "ML", rag: "RAG", lfras: "LFRAS", llm: "LLM", api: "API", njit: "NJIT", ddos: "DDoS", unv: "UNV", iway: "iWay", nero: "NERO", ats: "ATS" };
 
 const titleCase = (text) =>
   text
@@ -66,6 +66,45 @@ function buildDocuments() {
         .filter(Boolean)
         .join("\n"),
     });
+
+    // Deeper case study sections get their own documents, so a question about
+    // one of them retrieves it without the whole project competing for space.
+    const name = titleCase(project.title);
+    const url = `${profile.site}/projects/${project.slug}`;
+    const sections = [
+      project.story && {
+        id: "story",
+        title: `${name} — why Pavan built it`,
+        text: [`${titleCase(project.story.title)}, in Pavan's own words:`, ...project.story.paragraphs].join("\n"),
+      },
+      project.pipeline && {
+        id: "pipeline",
+        title: `${name} — how it works`,
+        text: [
+          `${name} pipeline stages, in order:`,
+          ...project.pipeline.map((stage, i) => `${i + 1}. ${titleCase(stage.title)} (${stage.question.toLowerCase()}): ${stage.text}`),
+        ].join("\n"),
+      },
+      project.principles && {
+        id: "principles",
+        title: `${name} — design principles`,
+        text: project.principles.map((item) => `${titleCase(item.title)}: ${item.text}`).join("\n"),
+      },
+      project.evaluation && {
+        id: "evaluation",
+        title: `${name} — AI evaluation`,
+        text: [
+          project.evaluation.intro,
+          ...project.evaluation.rows.map((row) => `${titleCase(row.capability)} — ${row.metric}: ${row.value}.`),
+          project.evaluation.findings,
+          ...(project.roadmap ?? []).map((item) => `Next: ${item}`),
+        ].join("\n"),
+      },
+    ].filter(Boolean);
+
+    for (const section of sections) {
+      docs.push({ id: `project-${project.slug}-${section.id}`, title: section.title, url, text: section.text });
+    }
   }
 
   docs.push({

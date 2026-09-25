@@ -2513,6 +2513,160 @@ footer {
   line-height: 1.8;
 }
 
+/* Optional case study sections: pipeline, principles, evaluation, roadmap. */
+
+.case-lead {
+  max-width: 760px;
+  margin: 75px 0 0;
+  color: #888;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.case-note {
+  margin-top: 45px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(239, 21, 29, 0.5);
+}
+
+.pipeline-grid,
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 75px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.principles-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.pipeline-grid li,
+.principles-grid > div {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 25px 35px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.pipeline-step,
+.principles-grid span {
+  color: var(--red);
+  font-family: "Space Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.pipeline-grid h3,
+.principles-grid h3 {
+  margin: 55px 0 0;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.principles-grid h3 {
+  margin-top: 45px;
+  font-size: clamp(19px, 1.7vw, 24px);
+}
+
+.pipeline-grid small {
+  margin-top: 14px;
+  color: #aaa;
+  font-family: "Space Mono", monospace;
+  font-size: 8px;
+  line-height: 1.7;
+  letter-spacing: 0.08em;
+}
+
+.pipeline-grid p,
+.principles-grid p {
+  margin: 20px 0 0;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.eval-table {
+  margin-top: 55px;
+  border-top: 1px solid var(--line);
+}
+
+.eval-row {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1fr;
+  align-items: center;
+  gap: 25px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.eval-row span {
+  color: #666;
+  font-family: "Space Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.eval-row p {
+  margin: 0;
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.eval-row strong {
+  font-size: clamp(20px, 2.4vw, 32px);
+  letter-spacing: -0.04em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.eval-head {
+  padding: 14px 0;
+}
+
+.eval-head span:last-child {
+  text-align: right;
+}
+
+.roadmap-list {
+  margin: 70px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.roadmap-list li {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 25px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.roadmap-list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.roadmap-list span {
+  color: var(--red);
+  font-family: "Space Mono", monospace;
+  font-size: 8px;
+}
+
+.roadmap-list p {
+  margin: 0;
+  color: #bbb;
+  font-size: clamp(16px, 1.8vw, 22px);
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+}
+
 .case-final {
   min-height: 70vh;
 
@@ -2592,6 +2746,28 @@ footer {
     min-height: 300px;
     padding: 25px;
   }
+
+  .pipeline-grid,
+  .principles-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .eval-row {
+    grid-template-columns: 1fr auto;
+    gap: 8px 20px;
+  }
+
+  .eval-row span {
+    grid-column: 1 / -1;
+  }
+
+  .eval-head {
+    display: none;
+  }
+
+  .roadmap-list li {
+    grid-template-columns: 35px 1fr;
+  }
 }
 
 @media (max-width: 500px) {
@@ -2621,6 +2797,16 @@ footer {
 
   .architecture.large {
     flex-direction: column;
+  }
+
+  .pipeline-grid,
+  .principles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline-grid h3,
+  .principles-grid h3 {
+    margin-top: 35px;
   }
 
   .architecture.large span {

@@ -14,13 +14,15 @@ export const profile = {
   about: [
     "AI/ML Engineer focused on building practical machine learning and AI applications, with a strong foundation in Python, software engineering, data processing and backend development.",
     "At Lucid Software he builds compliance-risk models and RAG-based semantic search with GPT-4 and pgvector. Before that, at Prudential Financial, he built a lapse prediction model on 2M+ policy records, trained XGBoost and LightGBM, tracked experiments in MLflow and shipped it with Docker, FastAPI and GitHub Actions.",
+    "Outside client work he designed and built NERO, an AI job intelligence platform where every LLM claim must quote its source text and every score comes from deterministic, explainable code, backed by its own AI evaluation framework.",
     "He cares about the whole path: clean data, honest evaluation, and models that are served, monitored and actually used.",
   ],
   skills: [
     "Python", "SQL", "JavaScript", "TypeScript", "Java",
     "scikit-learn", "XGBoost", "LightGBM", "Random Forest", "PyTorch", "TensorFlow", "OpenCV",
     "RAG", "Semantic Search", "Vector / Graph Embeddings", "GPT-4", "OpenAI Embeddings", "pgvector", "Prompt Engineering",
-    "FastAPI", "Docker", "MLflow", "GitHub Actions", "Node.js", "REST APIs",
+    "LLM Evaluation", "Structured Outputs",
+    "FastAPI", "Docker", "MLflow", "GitHub Actions", "Node.js", "Next.js", "REST APIs",
     "Pandas", "NumPy", "Snowflake", "PostgreSQL", "MongoDB",
     "AWS", "Azure", "Cloud Infrastructure",
   ],
@@ -81,8 +83,174 @@ export const experience = [
 
 // Projects, in display order. The first is the flagship on the home page.
 // `summary` and `tags` feed the home page list; the rest feeds the case study
-// page and the "Ask about Pavan" assistant.
+// page and the "Ask about Pavan" assistant. `story`, `pipeline`, `principles`,
+// `evaluation` and `roadmap` are optional deeper sections of a case study.
 export const projects = [
+  {
+    slug: "nero",
+    title: "NERO AI JOB INTELLIGENCE",
+    listTitle: "NERO — AI JOB INTELLIGENCE PLATFORM",
+    category: "GENERATIVE AI · FULL-STACK PLATFORM",
+    dates: "SEP 2026 — PRESENT",
+    summary:
+      "An AI job search platform I designed and built end to end. NERO reads every job description the way a careful recruiter would, turns it into evidence-backed requirements, and shows a candidate which jobs they can take, how their resume reads against each one, what to improve and where to apply first.",
+    tags: ["LLMS", "EVIDENCE GROUNDING", "FASTAPI", "POSTGRESQL", "NEXT.JS", "AI EVALUATION"],
+    description:
+      "NERO is an AI job intelligence platform I designed and built end to end. It discovers jobs, decodes every job description into structured, evidence-backed requirements, and takes a candidate from \"which jobs can I even take?\" to \"which one should I apply to first, and with which resume?\" It never invents a requirement, a skill or a score.",
+    tech: [
+      "PYTHON", "FASTAPI", "PYDANTIC", "SQLALCHEMY", "ALEMBIC", "POSTGRESQL",
+      "OPENAI STRUCTURED OUTPUTS", "NEXT.JS", "REACT", "TYPESCRIPT", "TAILWIND CSS", "SHADCN/UI",
+      "DOCKER COMPOSE", "GITHUB ACTIONS", "PYTEST", "VITEST",
+    ],
+    overview:
+      "Job searching is noisy and hard to see into. Postings mix hard requirements with nice-to-haves, bury deal-breakers like sponsorship or security clearance in the fine print, and every applicant tracking system reads a resume a little differently. Most AI job tools answer with a single confident match percentage that nobody can check, and fill the gaps with guesses.",
+    context:
+      "NERO takes the opposite approach. It gives each question a candidate actually has its own engine and its own explainable answer: can I be considered, what does this job require, how well do I fit, how will an ATS read my resume, what should I improve, and where should I start. AI is used where language needs understanding. Every score is computed by deterministic, versioned, tested code, and every AI claim has to quote the text it came from.",
+    story: {
+      title: "WHY I BUILT NERO",
+      paragraphs: [
+        "I built NERO because I was living the problem. As an AI/ML engineer on the job market, I kept running into tools that hand you one match score with no explanation, suggest resume lines you never earned, and treat \"the posting doesn't say\" as \"you don't qualify.\"",
+        "So I wrote the rules before the code, and built them into the architecture: AI may understand text but never decides a score. Every claim needs evidence you can point to. Unknown stays unknown. And the candidate is always the one who decides and applies.",
+        "I ran it like a product team of one. Every capability started as a numbered ticket with acceptance rules, was built behind tests, and had its design decisions recorded in the architecture notes before the next one began: more than 30 tickets and 200 commits in under two weeks.",
+      ],
+    },
+    results: [
+      { label: "PIPELINE STAGES", value: "9" },
+      { label: "AI EVIDENCE GROUNDED", value: "42/42" },
+      { label: "BACKEND TESTS", value: "1,390+" },
+      { label: "TICKETS SHIPPED", value: "30+" },
+    ],
+    pipeline: [
+      {
+        title: "RESUME INTELLIGENCE",
+        question: "WHAT DOES THIS RESUME ACTUALLY DEMONSTRATE?",
+        text: "PDF and DOCX resumes are validated and parsed into sections, contact details, bullets and skills, then analyzed by an LLM. Each skill is marked as demonstrated in real work or only listed. A job-independent General Resume Score averages five ratio-based components (structure, action-oriented writing, measurable impact, clarity and skill evidence), so a longer resume can't score higher just by being longer.",
+      },
+      {
+        title: "JOB DISCOVERY",
+        question: "WHAT JOBS ARE OUT THERE?",
+        text: "A provider-independent pipeline fetches, normalizes, validates, deduplicates and stores jobs on a six-hour schedule. The shared HTTP client handles retries with backoff, Retry-After, response size caps and throttling. One malformed record is counted and skipped instead of failing the run, and unsafe links are never stored. Candidates can also paste any posting, which stays private to them.",
+      },
+      {
+        title: "HARD ELIGIBILITY",
+        question: "CAN THIS JOB EVEN BE CONSIDERED?",
+        text: "A deterministic pre-filter checks employment type, location, remote arrangement, sponsorship, citizenship, security clearance and, if the candidate opts in, minimum experience. The result is ELIGIBLE, INELIGIBLE or UNKNOWN, with a reason for every check. No score can override it, and a posting that doesn't say is UNKNOWN, never a silent rejection.",
+      },
+      {
+        title: "JOB INTELLIGENCE",
+        question: "WHAT DOES THIS JOB REALLY REQUIRE?",
+        text: "Deterministic extraction runs first, then an LLM decodes meaning into a strict schema. The result is a versioned contract: title, seniority and role family, employment and location, required and preferred skills (never collapsed into one list), experience, compensation and work authorization, with responsibilities kept apart from requirements. Requirement Intelligence adds four importance tiers, AND / OR / minimum-count / equivalent relationships, character-level source spans, and duplicate, contradiction and prompt-injection detection.",
+      },
+      {
+        title: "JOB MATCH",
+        question: "HOW WELL DOES THIS JOB FIT ME?",
+        text: "A 0–100 fit score built from must-have skills (35), preferred skills (15), experience (20), role alignment (15), location (10) and employment type (5). Every requirement shows the resume evidence behind it, and the result carries a confidence level.",
+      },
+      {
+        title: "ATS ALIGNMENT",
+        question: "HOW WILL AN ATS READ THIS RESUME FOR THIS JOB?",
+        text: "NERO's own estimate, never presented as an employer's score. Each requirement is matched, partial or missing, and the score weights requirement coverage (40%), keyword alignment (25%), demonstrated evidence (25%) and parseability (10%). A must-have ceiling means a resume missing required skills can't score highly just because it is well formatted. It is always shown separately from Job Match.",
+      },
+      {
+        title: "GAPS & RESUME IMPROVEMENT",
+        question: "WHAT CAN I TRUTHFULLY IMPROVE?",
+        text: "Every partial or missing requirement becomes a gap with a suggestion type decided in code: missing means \"add if true\", partial means \"rephrase what's there\". The AI may only write an explanation that quotes that gap's own evidence, and an \"add if true\" suggestion must be phrased conditionally, never as a claim. Suggestions the candidate approves become a new resume version, which is rechecked and compared with the original.",
+      },
+      {
+        title: "PRIORITY RANKING",
+        question: "WHERE SHOULD I START?",
+        text: "An explained ordering, not another blended score. Ineligible jobs are excluded and eligible jobs come before unknown ones. Jobs are then ordered by Job Match, with ATS Alignment breaking ties and the newest posting first after that. Every position lists the evidence and cautions behind it, and outdated inputs are flagged. It makes zero AI calls and uses a fixed number of database queries per request.",
+      },
+      {
+        title: "APPLICATION TRACKING",
+        question: "WHAT HAPPENED NEXT?",
+        text: "Saved, applied, interviewing, offer, rejected or withdrawn, with an append-only status timeline for every application. NERO only records what the candidate did. It never submits an application on anyone's behalf.",
+      },
+    ],
+    principles: [
+      {
+        title: "AI UNDERSTANDS, CODE DECIDES",
+        text: "LLMs interpret language. Every score, ranking and suggestion type comes from deterministic, versioned code that gives the same answer for the same input.",
+      },
+      {
+        title: "EVIDENCE OR IT DIDN'T HAPPEN",
+        text: "Every AI claim must quote text that literally appears in the job description or resume. Anything unsupported is dropped and replaced with a safe deterministic result.",
+      },
+      {
+        title: "UNKNOWN STAYS UNKNOWN",
+        text: "Missing data never turns into a guess, a zero or a rejection. It is labelled unknown and explained.",
+      },
+      {
+        title: "ONE QUESTION, ONE ENGINE",
+        text: "Eligibility, Job Match, ATS Alignment, gaps and priority each answer a different question and are never blended into one opaque number.",
+      },
+      {
+        title: "HISTORY IS NEVER REWRITTEN",
+        text: "Analyses are insert-only and stamped with analysis, analyzer, prompt and engine versions, so a past result stays exactly as it was after a resume edit or a logic change.",
+      },
+      {
+        title: "INPUT IS UNTRUSTED",
+        text: "Job descriptions and resumes are treated as data, never as instructions. Known prompt-injection phrasing is detected and flagged.",
+      },
+      {
+        title: "THE CANDIDATE DECIDES",
+        text: "Nothing changes a resume without the candidate's approval, and NERO never applies to a job for them.",
+      },
+      {
+        title: "MEASURE HONESTLY",
+        text: "If an evaluation can't run, it reports NOT RUN instead of substituting mocked output. Weak spots are written down, not hidden.",
+      },
+    ],
+    evaluation: {
+      intro:
+        "NERO ships with its own AI evaluation framework: a hand-labelled dataset of 6 resumes, 6 jobs, 9 match cases and 5 ranking pairs, run through the production code paths. The committed baseline is checked by the test suite, so a change that makes NERO less accurate fails CI. The first baseline covers every deterministic stage. Live LLM evaluation is built in and runs on request.",
+      rows: [
+        { capability: "JOB INTELLIGENCE", metric: "Required skills, precision / recall", value: "1.0 / 1.0" },
+        { capability: "JOB INTELLIGENCE", metric: "Evidence quoted verbatim from the JD", value: "42/42" },
+        { capability: "JOB INTELLIGENCE", metric: "Required vs. preferred tier accuracy", value: "25/25" },
+        { capability: "REQUIREMENT INTELLIGENCE", metric: "\"A or B\" and \"A and B\" groups found", value: "3/3 · 4/4" },
+        { capability: "RESUME ANALYSIS", metric: "Skill recall / precision", value: "1.0 / 0.98" },
+        { capability: "JOB MATCH", metric: "Strong resume ranked above weak for the same job", value: "5/5" },
+        { capability: "GAP ANALYSIS", metric: "Missing-requirement recall", value: "0.96" },
+        { capability: "ALL STAGES", metric: "Pipeline error rate", value: "0.0" },
+      ],
+      findings:
+        "The evaluation also did its job by finding real issues: \"A or B\" alternatives such as \"PyTorch or TensorFlow\" are still treated as two separate requirements by Job Match and Gap Analysis, dotted names like Next.js are split mid-word, and a detected prompt injection can still add a requirement. Each finding is recorded with its cause and queued as a follow-up.",
+    },
+    focus: [
+      {
+        title: "SCHEMA-CONSTRAINED LLMS",
+        text: "OpenAI Structured Outputs with closed Pydantic schemas that reject unexpected fields. A validator merges deterministic and AI results field by field. If the AI call fails, the result degrades to a partial, deterministic one instead of an error, and every stored field records whether it came from the AI or the fallback.",
+      },
+      {
+        title: "ONE SKILL VOCABULARY",
+        text: "A single canonical skill service is shared by resume analysis, job extraction and matching. It resolves \"k8s\" to Kubernetes and \"GCP\" to Google Cloud, keeps related-but-different technologies like Python and PyTorch apart, and doesn't let React Native count as React.",
+      },
+      {
+        title: "VERSIONED, REPRODUCIBLE RESULTS",
+        text: "Every AI and scoring result is insert-only, content-fingerprinted and idempotent, with separate analysis, analyzer, prompt and engine versions. Repeating a request returns the same result instead of paying for another AI call.",
+      },
+      {
+        title: "PRIVACY BY CONSTRUCTION",
+        text: "Every personalized query is scoped to the user and the chosen resume version. Another user's private job returns the same 404 as one that doesn't exist, and the public job listing is never personalized. JWT authentication, Argon2 password hashing, rate-limited auth endpoints and a password reset flow.",
+      },
+      {
+        title: "PRODUCTION ENGINEERING",
+        text: "FastAPI and PostgreSQL with Alembic migrations, a Docker Compose stack with a discovery scheduler, and a Next.js + TypeScript app built from Figma designs, with loading, empty, error and retry states for every stage. GitHub Actions migrates an empty database, runs the full pytest suite, and type-checks, lints, tests and builds the web app on every change.",
+      },
+    ],
+    architecture: ["RESUME", "DISCOVERY", "ELIGIBILITY", "JOB INTELLIGENCE", "MATCH / ATS", "GAPS", "PRIORITY", "TRACKING"],
+    accent: 3,
+    note: "EVIDENCE-GROUNDED AI / EXPLAINABLE SCORES / THE CANDIDATE DECIDES",
+    roadmap: [
+      "Treat \"A or B\" requirements as true alternatives in Job Match and Gap Analysis.",
+      "Act on detected prompt injection, and add injection detection on the resume side.",
+      "Run and commit the live LLM evaluation baseline next to the deterministic one.",
+      "Connect a second job source once its terms of use are reviewed and approved.",
+      "Keep dotted skill names such as Next.js and Node.js intact during extraction.",
+    ],
+    repo: "https://github.com/telaprolupavan-byte/ai-job-intelligence",
+  },
   {
     slug: "lfras-ai",
     title: "LFRAS AI",
@@ -116,52 +284,6 @@ export const projects = [
     architecture: ["DOCUMENTS", "EMBEDDINGS", "PGVECTOR", "RETRIEVAL", "GPT-4"],
     accent: 3,
     note: "RISK MODELS / SEMANTIC SEARCH / GROUNDED ANALYSIS",
-  },
-  {
-    slug: "ai-job-intelligence",
-    title: "NERO AI JOB INTELLIGENCE",
-    listTitle: "NERO AI JOB INTELLIGENCE — EVIDENCE-BASED JOB SEARCH",
-    category: "GENERATIVE AI · FULL-STACK PLATFORM",
-    dates: "SEP 2026 — PRESENT",
-    summary:
-      "A job search platform that discovers jobs, filters out the ones a candidate can't take, and decodes each job description into evidence-backed requirements. Deterministic engines score ATS alignment and job match, analyze gaps and rank what to apply to first.",
-    tags: ["LLMS", "FASTAPI", "POSTGRESQL", "NEXT.JS", "AI EVALUATION"],
-    description:
-      "NERO is an end-to-end job search platform that turns raw job descriptions into structured, evidence-backed requirements and helps a candidate decide which jobs to apply to, with which resume.",
-    tech: ["PYTHON", "FASTAPI", "PYDANTIC", "SQLALCHEMY", "ALEMBIC", "POSTGRESQL", "OPENAI STRUCTURED OUTPUTS", "NEXT.JS", "REACT", "TYPESCRIPT", "TAILWIND", "DOCKER", "GITHUB ACTIONS", "PYTEST", "VITEST"],
-    overview:
-      "Jobs are discovered from job boards such as Greenhouse on a schedule, then normalized and deduplicated. For each user, a hard-eligibility pre-filter removes jobs they can't take (employment type, location, remote arrangement, sponsorship, citizenship, clearance). Job Intelligence then decodes each JD into a versioned contract that keeps required and preferred skills, experience, compensation and work authorization separate. ATS Alignment, Job Match, Gap Analysis and Priority Ranking all build on that contract without re-parsing the JD.",
-    context:
-      "The core design rule is that AI interprets and deterministic code scores. LLM output goes through a closed schema, and every claim must quote evidence that actually appears in the source text, which blocks hallucinated requirements and prompt injection hidden in a JD or resume. Missing job data resolves to UNKNOWN, never to a silent rejection. Every analysis is versioned and insert-only, so past results never change after a resume edit.",
-    results: [
-      { label: "EVIDENCE GROUNDING", value: "42/42" },
-      { label: "REQUIRED-SKILL P / R", value: "1.0" },
-      { label: "TEST FILES", value: "110+" },
-    ],
-    focus: [
-      {
-        title: "JOB INTELLIGENCE",
-        text: "Deterministic extraction followed by schema-constrained LLM decoding (OpenAI Structured Outputs), merged by a validator that rejects any claim whose evidence isn't a substring of the JD. Skills resolve through one canonical vocabulary, so k8s maps to Kubernetes while Python and PyTorch stay distinct.",
-      },
-      {
-        title: "ELIGIBILITY & MATCHING",
-        text: "A hard-eligibility pre-filter returns ELIGIBLE, INELIGIBLE or UNKNOWN with explainable checks, and no high score can override it. Job Match and ATS Alignment are kept as separate scores. ATS Alignment weights requirement coverage (40%), keyword alignment (25%), demonstrated evidence (25%) and resume parseability (10%).",
-      },
-      {
-        title: "GAPS & RESUME IMPROVEMENT",
-        text: "Gap analysis explains why each unmet requirement is a gap and what the candidate could truthfully do about it. Suggestions the candidate approves become a new resume version, which is rechecked with the ATS engine and compared with the original.",
-      },
-      {
-        title: "AI EVALUATION",
-        text: "A hand-labelled evaluation dataset of resumes, jobs, match cases and ranking pairs measures precision, recall, evidence grounding and injection detection, with a committed baseline for regression checks. Weak spots it found, such as OR-alternative handling, are recorded as follow-up tickets rather than hidden.",
-      },
-      {
-        title: "PLATFORM",
-        text: "FastAPI and PostgreSQL with Alembic migrations, authentication and rate limiting, a Next.js + TypeScript frontend, a Docker Compose stack with a discovery scheduler, and CI on GitHub Actions.",
-      },
-    ],
-    architecture: ["DISCOVERY", "ELIGIBILITY", "JOB INTELLIGENCE", "ATS / MATCH", "GAPS", "PRIORITY"],
-    repo: "https://github.com/telaprolupavan-byte/ai-job-intelligence",
   },
   {
     slug: "lapse-prediction",
