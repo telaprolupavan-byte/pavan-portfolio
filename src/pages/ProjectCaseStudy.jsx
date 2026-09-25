@@ -1,268 +1,321 @@
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const projectData = {
   kaivan: {
     number: "01",
     title: "KAIVAN",
-    category: "BUSINESS PLATFORM",
+    category: "AI/ML DATA PLATFORM",
     dates: "MAR 2026 — PRESENT",
     description:
-      "A full-stack business platform designed around real operational workflows, authentication, APIs, data management and maintainable application architecture.",
-    tech: ["JAVA", "SPRING BOOT", "MONGODB", "REST API"],
+      "A full-stack platform for my family business, built to turn operational data into a foundation for intelligent, data-driven applications.",
+    tech: ["NODE.JS", "EXPRESS", "MONGODB", "REST API", "PYTHON", "DOCKER"],
     overview:
-      "KAIVAN is being developed as a practical business platform focused on real business workflows. The system emphasizes clear backend architecture, authentication, API design and structured data management.",
+      "KAIVAN started as a way to organize the operational data of my family business. Backend services in Node.js and Express expose REST APIs — including a Stone REST API — backed by MongoDB for persistent business data.",
+    context:
+      "The platform is now expanding toward AI/ML: business-data processing, feature engineering, predictive analytics and decision-support workflows built on the data it already collects.",
     focus: [
       {
-        title: "AUTHENTICATION",
-        text: "Secure access and protected application workflows.",
+        title: "BACKEND & APIS",
+        text: "Node.js and Express services with modular REST APIs, including the Stone REST API, and MongoDB persistence.",
       },
       {
-        title: "BUSINESS LOGIC",
-        text: "Backend services organized around clear business responsibilities.",
+        title: "ENGINEERING WORKFLOW",
+        text: "Frontend-to-backend integration, Git and GitHub with feature branches, and environment configuration.",
       },
       {
-        title: "DATA MANAGEMENT",
-        text: "Structured persistence and API operations designed for maintainability.",
+        title: "TOWARD AI/ML",
+        text: "Data processing, feature engineering and predictive analytics that turn business records into decision support.",
       },
     ],
+    architecture: ["CLIENT", "REST API", "NODE / EXPRESS", "MONGODB"],
   },
 
   "cloud-infrastructure": {
     number: "02",
     title: "CLOUD INFRASTRUCTURE",
-    category: "CLOUD OPERATIONS",
+    category: "CLOUD OPERATIONS · LUCID SOFTWARE",
     dates: "AUG 2025 — PRESENT",
     description:
-      "A cloud infrastructure monitoring and incident management project focused on operational visibility and infrastructure health.",
-    tech: ["AWS", "AZURE", "CLOUD OPERATIONS"],
+      "Cloud infrastructure operations across AWS and Azure, focused on monitoring, troubleshooting, network configuration, access management and incident resolution.",
+    tech: ["AWS", "AZURE", "CLOUDWATCH", "AZURE MONITOR", "IAM", "VNETS"],
     overview:
-      "A cloud-focused project exploring infrastructure monitoring, operational visibility and incident management workflows across cloud environments.",
+      "Supported cloud infrastructure operations across AWS and Azure environments, keeping infrastructure and application environments healthy and resolving incidents when they were not.",
+    context:
+      "Beyond fixing issues, the work standardized how the team handles them: root causes, troubleshooting steps and remediation procedures were documented as SOPs.",
     focus: [
       {
         title: "MONITORING",
-        text: "Tracking infrastructure health and operational signals.",
+        text: "Monitored environments with AWS CloudWatch and Azure Monitor, investigating alerts and performance issues.",
       },
       {
-        title: "INCIDENTS",
-        text: "Organizing operational events and incident workflows.",
+        title: "NETWORKING",
+        text: "Troubleshot connectivity and configuration issues involving VNets, subnets, firewalls and access controls.",
       },
       {
-        title: "CLOUD",
-        text: "Working with modern cloud infrastructure concepts.",
+        title: "ACCESS",
+        text: "Managed and reviewed IAM and access permissions in line with security and operational requirements.",
+      },
+      {
+        title: "INCIDENTS & SOPS",
+        text: "Investigated and resolved incidents, and maintained SOPs to make troubleshooting faster and more consistent.",
       },
     ],
+    architecture: ["ALERT", "INVESTIGATE", "RESOLVE", "DOCUMENT"],
   },
 
   "gemini-ai-clone": {
     number: "03",
     title: "GEMINI AI CLONE",
-    category: "WEB APPLICATION",
+    category: "GENERATIVE AI",
     dates: "JAN 2024 — MAY 2024",
     description:
-      "A conversational AI web application built to explore API integration and interactive AI-powered workflows.",
-    tech: ["PYTHON", "APIS", "WEB APPLICATION"],
+      "A conversational AI assistant inspired by modern generative AI platforms, focused on natural-language interaction and AI-powered response generation.",
+    tech: ["PYTHON", "LLMS", "NLP", "PROMPT ENGINEERING", "REACT", "JAVASCRIPT"],
     overview:
-      "A web application project focused on connecting an interactive frontend with API-based AI functionality.",
+      "An interactive chat interface for real-time conversations with an AI model, processing natural-language prompts and generating contextual responses.",
+    context:
+      "The project was a hands-on exploration of LLM application development — how prompt engineering and conversation context shape response quality.",
     focus: [
       {
-        title: "API INTEGRATION",
-        text: "Connecting application interfaces with external APIs.",
+        title: "CHAT INTERFACE",
+        text: "Real-time conversation UI with dynamic response rendering.",
       },
       {
-        title: "APPLICATION FLOW",
-        text: "Designing interactive request and response workflows.",
+        title: "PROMPT HANDLING",
+        text: "Conversation handling and prompt processing to keep responses contextual.",
       },
       {
-        title: "WEB UI",
-        text: "Building a responsive conversational interface.",
+        title: "ARCHITECTURE",
+        text: "Frontend and AI backend designed to interact cleanly and scale.",
       },
     ],
+    architecture: ["CHAT UI", "PROMPT", "LLM API", "RESPONSE"],
   },
 
   "classification-model": {
     number: "04",
-    title: "CLASSIFICATION MODEL",
-    category: "MACHINE LEARNING",
+    title: "DIABETES PREDICTION",
+    category: "SUPERVISED CLASSIFICATION",
     dates: "JAN 2023 — APR 2023",
     description:
-      "A supervised classification project focused on evaluating machine learning models and comparing performance.",
-    tech: ["PYTHON", "MACHINE LEARNING", "MODEL EVALUATION"],
+      "An end-to-end supervised ML pipeline for diabetes prediction on the Pima Indians Diabetes Dataset (768 samples, 8 features).",
+    tech: ["PYTHON", "SCIKIT-LEARN", "TENSORFLOW", "KERAS", "LSTM", "RANDOM FOREST"],
     overview:
-      "A machine learning project centered on supervised classification and systematic model evaluation.",
+      "Random Forest, Decision Tree and LSTM models were implemented and compared using 10-fold cross-validation, with preprocessing, training, validation and metric analysis in Python.",
+    context:
+      "Beyond accuracy, models were compared on TSS, HSS, FPR and FNR and visualized with ROC curves, giving a fuller picture of how each one fails.",
+    results: [
+      { label: "LSTM AUC", value: "0.81" },
+      { label: "LSTM F1", value: "71.3%" },
+      { label: "LSTM PRECISION", value: "74.2%" },
+      { label: "RF AUC", value: "0.77" },
+    ],
     focus: [
       {
-        title: "DATA",
-        text: "Preparing datasets for supervised learning workflows.",
+        title: "PIPELINE",
+        text: "Data preprocessing, training and validation with 10-fold cross-validation.",
       },
       {
-        title: "MODELING",
-        text: "Training and comparing classification approaches.",
+        title: "COMPARISON",
+        text: "The LSTM outperformed the traditional models: 74.2% precision, 68.7% recall, 71.3% F1.",
       },
       {
         title: "EVALUATION",
-        text: "Analyzing model performance using evaluation metrics.",
+        text: "TSS, HSS, FPR, FNR, ROC curves and comparative plots.",
       },
     ],
+    architecture: ["DATA", "PREPROCESS", "10-FOLD CV", "EVALUATE"],
   },
 
   "amazon-api-gateway": {
     number: "05",
     title: "AMAZON API GATEWAY",
-    category: "CLOUD",
+    category: "CLOUD API INTEGRATION",
     dates: "MAR 2019 — AUG 2019",
     description:
-      "A project exploring API management and gateway architecture using Amazon Web Services.",
-    tech: ["AWS", "API GATEWAY", "CLOUD"],
+      "A cloud-based API integration using Amazon API Gateway, focused on designing, configuring and managing RESTful APIs.",
+    tech: ["AWS", "API GATEWAY", "REST APIS", "HTTP"],
     overview:
-      "A cloud project focused on understanding API gateway architecture and managed API services.",
+      "Configured API Gateway resources, HTTP methods, request handling and endpoint integrations, then implemented and tested endpoints between client applications and backend services.",
+    context:
+      "The project explored API deployment, request/response workflows and API management — the building blocks of scalable, service-based applications.",
     focus: [
       {
-        title: "API",
-        text: "Designing and exposing application endpoints.",
+        title: "CONFIGURATION",
+        text: "Resources, HTTP methods, request handling and endpoint integrations.",
       },
       {
-        title: "GATEWAY",
-        text: "Exploring managed API gateway functionality.",
+        title: "DEPLOYMENT",
+        text: "API deployment and request/response workflows within AWS.",
       },
       {
-        title: "AWS",
-        text: "Working with Amazon cloud infrastructure.",
+        title: "TESTING",
+        text: "Implemented and tested endpoints between clients and backend services.",
       },
     ],
+    architecture: ["CLIENT", "API GATEWAY", "INTEGRATION", "BACKEND"],
   },
 
   "delve-unv": {
     number: "06",
     title: "DELVE UNV",
-    category: "WEB APPLICATION",
+    category: "UNIVERSITY SEARCH PLATFORM · NJIT",
     dates: "2023",
     description:
-      "A Python-based web application with responsive frontend components and structured backend functionality.",
-    tech: ["DJANGO", "PYTHON", "HTML5", "CSS3", "BOOTSTRAP"],
+      "A team project at NJIT: a data-driven platform that helps international students discover and compare universities and programs.",
+    tech: ["PYTHON", "REACT", "JAVASCRIPT", "SQL", "REST APIS"],
     overview:
-      "A web application developed using Django and Python with a responsive frontend.",
+      "Students can search and compare universities by academic program, location, tuition, admissions requirements and eligibility, based on their own academic profile and preferences.",
+    context:
+      "Ranking logic and structured filtering organize university data so the most relevant options surface first, applying ideas from information retrieval and recommendation systems.",
     focus: [
       {
-        title: "DJANGO",
-        text: "Building backend functionality with Django.",
+        title: "SEARCH & FILTERING",
+        text: "Structured search to match universities to academic and personal preferences.",
       },
       {
-        title: "PYTHON",
-        text: "Implementing application logic and server-side functionality.",
+        title: "RANKING",
+        text: "Data processing and ranking logic to improve the relevance of results.",
       },
       {
-        title: "FRONTEND",
-        text: "Creating responsive interfaces using modern HTML and CSS.",
+        title: "FULL STACK",
+        text: "Interactive comparison UI backed by services and APIs for university data.",
       },
     ],
+    architecture: ["REACT UI", "REST API", "RANKING", "SQL"],
   },
 
   "turtleback-zoo": {
     number: "07",
     title: "TURTLEBACK ZOO",
-    category: "DATABASE APPLICATION",
+    category: "FULL-STACK DATABASE APPLICATION",
     dates: "NOV 2023 — DEC 2023",
     description:
-      "A database-driven web application implementing structured data management and CRUD functionality.",
-    tech: ["MYSQL", "SQL", "CRUD", "WEB APPLICATION"],
+      "A database-driven full-stack application for managing zoo operations — animals, buildings, attractions, employees and daily activities.",
+    tech: ["REACT", "NODE.JS", "SQL", "REST APIS", "JAVASCRIPT"],
     overview:
-      "A database-focused application demonstrating relational data management and CRUD operations.",
+      "Responsive interfaces for exploring and managing zoo data, backed by an API and a relational database that supports dynamic user interactions.",
+    context:
+      "Built with modular development, debugging, testing and version control to integrate the frontend and backend into one complete application.",
     focus: [
       {
         title: "DATABASE",
-        text: "Designing and working with structured relational data.",
+        text: "Relational data model for animals, buildings, attractions, employees and activities.",
       },
       {
-        title: "SQL",
-        text: "Using SQL for querying and managing application data.",
+        title: "BACKEND",
+        text: "API functionality for managing application data.",
       },
       {
-        title: "CRUD",
-        text: "Implementing create, read, update and delete workflows.",
+        title: "FRONTEND",
+        text: "Responsive interfaces focused on usability and intuitive navigation.",
       },
     ],
+    architecture: ["REACT UI", "NODE API", "SQL"],
   },
 
   "ddos-detection": {
     number: "08",
     title: "DDOS DETECTION",
-    category: "CYBERSECURITY",
+    category: "ML FOR CYBERSECURITY · NJIT",
     dates: "SEP 2022 — DEC 2022",
     description:
-      "A machine learning and cybersecurity project focused on identifying patterns associated with distributed denial-of-service attacks.",
-    tech: ["PYTHON", "MACHINE LEARNING", "CYBERSECURITY"],
+      "A supervised ML pipeline for detecting DDoS attacks on the KDD Cup 99 dataset — 4M+ network traffic records with 41 features.",
+    tech: ["PYTHON", "PANDAS", "SCIKIT-LEARN", "TENSORFLOW", "RANDOM FOREST"],
     overview:
-      "A cybersecurity-focused machine learning project exploring detection of network behavior associated with DDoS attacks.",
+      "Raw network traffic was preprocessed with protocol encoding, feature engineering and class-imbalance handling, then used to train and compare Random Forest, Decision Tree and other classifiers.",
+    context:
+      "In detection, false positives are expensive. Parameter tuning and classification-threshold optimization reduced them by over 35% while keeping accuracy high.",
+    results: [
+      { label: "ACCURACY", value: "97.5%" },
+      { label: "FEWER FALSE POSITIVES", value: "35%+" },
+      { label: "RECORDS", value: "4M+" },
+      { label: "FEATURES", value: "41" },
+    ],
     focus: [
       {
-        title: "SECURITY",
-        text: "Exploring patterns associated with malicious network activity.",
+        title: "PREPROCESSING",
+        text: "Protocol encoding, feature engineering and class-imbalance handling.",
       },
       {
-        title: "MACHINE LEARNING",
-        text: "Applying machine learning techniques to detection workflows.",
+        title: "MODELING",
+        text: "Random Forest, Decision Tree and other classifiers compared on accuracy, precision, recall, F1 and AUC.",
       },
       {
-        title: "PYTHON",
-        text: "Building data processing and analysis workflows.",
+        title: "TUNING",
+        text: "Threshold optimization, confusion matrices and ROC analysis.",
       },
     ],
+    architecture: ["TRAFFIC", "FEATURES", "CLASSIFIER", "ALERT"],
   },
 
   "trading-signal-assistant": {
     number: "09",
     title: "TRADING SIGNAL ASSISTANT",
-    category: "AI / COMPUTER VISION",
+    category: "AI / COMPUTER VISION · NJIT",
     dates: "JAN 2022 — APR 2022",
     description:
-      "An AI-powered application combining computer vision, an API backend and an interactive frontend.",
-    tech: ["AI/ML", "COMPUTER VISION", "FASTAPI", "REACT"],
+      "A full-stack AI assistant that analyzes candlestick chart images and video frames to generate Buy, Sell or Hold signals with confidence scores.",
+    tech: ["TENSORFLOW", "OPENCV", "FASTAPI", "REACT", "TYPESCRIPT", "PYTORCH"],
     overview:
-      "An application combining computer vision capabilities with a FastAPI backend and React interface.",
+      "OpenCV pipelines extract candlestick charts from images and video and recognize 78+ patterns. A FastAPI backend serves TensorFlow inference to a React + TypeScript frontend.",
+    context:
+      "The frontend supports drag-and-drop uploads, live chart previews, confidence scores and warning indicators, backed by prediction logging, error handling and automated recovery.",
+    results: [
+      { label: "PATTERNS", value: "78+" },
+      { label: "PER IMAGE", value: "<1.2S" },
+      { label: "PER FRAME BATCH", value: "<3S" },
+    ],
     focus: [
       {
         title: "COMPUTER VISION",
-        text: "Working with visual information as part of the application workflow.",
+        text: "OpenCV image and video processing for chart extraction and pattern recognition.",
       },
       {
-        title: "FASTAPI",
-        text: "Building an API backend for application functionality.",
+        title: "INFERENCE API",
+        text: "FastAPI REST endpoints with TensorFlow inference for real-time predictions.",
       },
       {
-        title: "REACT",
-        text: "Creating an interactive frontend experience.",
+        title: "FRONTEND",
+        text: "React + TypeScript UI with uploads, previews, signals and confidence scores.",
       },
     ],
+    architecture: ["CHART IMAGE", "OPENCV", "MODEL", "FASTAPI", "REACT"],
   },
 
   "customer-churn": {
     number: "10",
     title: "CUSTOMER CHURN",
-    category: "MACHINE LEARNING",
+    category: "PREDICTIVE ANALYTICS · IWAY SOFTWARE",
     dates: "OCT 2019 — DEC 2021",
     description:
-      "A predictive analytics project using machine learning and data analysis to study customer churn patterns.",
-    tech: ["PYTHON", "MACHINE LEARNING", "DATA ANALYSIS"],
+      "A machine learning model to predict customer churn from historical customer and service data.",
+    tech: ["PYTHON", "PANDAS", "NUMPY", "SCIKIT-LEARN", "MATPLOTLIB", "SQL"],
     overview:
-      "A predictive analytics project focused on understanding customer churn through data analysis and machine learning.",
+      "Data cleaning, exploratory analysis, feature engineering and preprocessing prepared the dataset for modeling, followed by a comparison of classification algorithms.",
+    context:
+      "Logistic Regression, Decision Tree, Random Forest and SVM were evaluated on accuracy, precision, recall, F1-score and confusion matrices to pick the right model.",
     focus: [
       {
-        title: "DATA ANALYSIS",
-        text: "Analyzing customer information and identifying relevant patterns.",
+        title: "DATA PREP",
+        text: "Cleaning, EDA and feature engineering on customer and service data.",
       },
       {
-        title: "PREDICTION",
-        text: "Applying machine learning to churn prediction workflows.",
+        title: "MODELING",
+        text: "Logistic Regression, Decision Tree, Random Forest and SVM compared.",
       },
       {
-        title: "INSIGHTS",
-        text: "Using model results to understand customer behavior.",
+        title: "EVALUATION",
+        text: "Accuracy, precision, recall, F1-score and confusion matrices.",
       },
     ],
+    architecture: ["CUSTOMER DATA", "FEATURES", "CLASSIFIER", "CHURN RISK"],
   },
 };
+
+const longestWord = (title) => Math.max(...title.split(" ").map((word) => word.length));
 
 function ProjectCaseStudy() {
   const { slug } = useParams();
@@ -289,6 +342,10 @@ function ProjectCaseStudy() {
     );
   }
 
+  // Section numbers shift when a project has a results section.
+  let sectionNumber = 2;
+  const label = (name) => `${String(++sectionNumber).padStart(2, "0")} / ${name}`;
+
   return (
     <div className="case-study">
       <nav className="case-nav">
@@ -310,7 +367,7 @@ function ProjectCaseStudy() {
 
           <small>{project.category}</small>
 
-          <h1>
+          <h1 style={{ "--title-chars": longestWord(project.title) + 1 }}>
             {slug === "kaivan" ? (
               <>
                 KAI<span>VAN.</span>
@@ -353,16 +410,29 @@ function ProjectCaseStudy() {
               <p>{project.overview}</p>
 
               <p>
-                {slug === "kaivan"
-                  ? "REAL BUSINESS. REAL WORKFLOWS. REAL SYSTEMS."
-                  : "The project demonstrates practical engineering concepts through a structured application, focusing on clear responsibilities and maintainable implementation."}
+                {project.context}
               </p>
             </div>
           </div>
         </section>
 
+        {project.results && (
+          <section className="case-section">
+            <div className="label">{label("RESULTS")}</div>
+
+            <div className="case-tech-grid">
+              {project.results.map((result) => (
+                <div key={result.label}>
+                  <span>{result.label}</span>
+                  <h3>{result.value}</h3>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         <section className="case-section">
-          <div className="label">03 / TECHNOLOGY</div>
+          <div className="label">{label("TECHNOLOGY")}</div>
 
           <div className="case-tech-grid">
             {project.tech.map((technology) => (
@@ -376,7 +446,7 @@ function ProjectCaseStudy() {
 
         <section className="case-section">
           <div className="label">
-            {slug === "kaivan" ? "04 / ENGINEERING FOCUS" : "04 / PROJECT FOCUS"}
+            {label(slug === "kaivan" ? "ENGINEERING FOCUS" : "PROJECT FOCUS")}
           </div>
 
           <div className="focus-list">
@@ -395,20 +465,20 @@ function ProjectCaseStudy() {
         </section>
 
         <section className="case-section">
-          <div className="label">{slug === "kaivan" ? "05 / ARCHITECTURE" : "05 / SYSTEM"}</div>
+          <div className="label">{label(slug === "kaivan" ? "ARCHITECTURE" : "SYSTEM")}</div>
 
           <div className={`architecture large ${slug === "kaivan" ? "kaivan-architecture" : ""}`}>
-            <div>CLIENT</div>
-            <span>→</span>
-            <div>{slug === "kaivan" ? "REST API" : "APPLICATION"}</div>
-            <span>→</span>
-            <div>{slug === "kaivan" ? "SPRING BOOT" : "DATA / API"}</div>
-            {slug === "kaivan" && <><span>→</span><div>MONGODB</div></>}
+            {project.architecture.map((step, index) => (
+              <Fragment key={step}>
+                {index > 0 && <span>→</span>}
+                <div>{step}</div>
+              </Fragment>
+            ))}
           </div>
         </section>
 
         <section className="case-final">
-          <div className="label">06 / NEXT</div>
+          <div className="label">{label("NEXT")}</div>
 
           <h2>
             BUILD.

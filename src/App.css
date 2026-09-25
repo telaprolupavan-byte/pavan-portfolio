@@ -1154,6 +1154,34 @@ button {
   line-height: 1.85;
 }
 
+.experience-highlights {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-highlights li {
+  position: relative;
+  padding-left: 18px;
+  color: #7d7d7d;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.experience-highlights li + li {
+  margin-top: 8px;
+}
+
+.experience-highlights li::before {
+  content: "";
+  position: absolute;
+  top: 0.8em;
+  left: 0;
+  width: 8px;
+  height: 1px;
+  background: var(--red);
+}
+
 .experience-side .tech-tags {
   margin-top: 20px;
 }
@@ -2418,7 +2446,8 @@ footer {
 .case-hero h1 {
   margin: 25px 0 35px;
 
-  font-size: clamp(100px, 18vw, 270px);
+  /* --title-chars is the longest word in the title, so long words still fit. */
+  font-size: min(clamp(100px, 18vw, 270px), calc(140vw / var(--title-chars, 1)));
   line-height: 0.72;
   font-weight: 900;
 
@@ -2649,7 +2678,8 @@ footer {
   }
 
   .case-hero h1 {
-    font-size: 23vw;
+    font-size: min(23vw, calc(140vw / var(--title-chars, 1)));
+    line-height: 0.85;
   }
 
   .case-grid {
