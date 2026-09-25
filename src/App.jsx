@@ -261,7 +261,7 @@ function App() {
             <a href="https://www.linkedin.com/in/pavan-telaprolu-52491694/" target="_blank" rel="noreferrer">
               LINKEDIN<span className="arrow-out">↗</span>
             </a>
-            <a href="mailto:your.email@example.com">
+            <a href="mailto:telaprolupavan@gmail.com">
               EMAIL<span className="arrow-out">↗</span>
             </a>
           </div>
@@ -694,7 +694,7 @@ function App() {
           </div>
 
           <div className="contact-links reveal">
-            <a href="mailto:your.email@example.com">
+            <a href="mailto:telaprolupavan@gmail.com">
               <span className="contact-link-label">EMAIL</span>
               <ArrowUpRight size={20} />
             </a>
@@ -729,7 +729,7 @@ function App() {
           <a href="https://www.linkedin.com/in/pavan-telaprolu-52491694/" target="_blank" rel="noreferrer">
             LINKEDIN<span className="arrow-out">↗</span>
           </a>
-          <a href="mailto:your.email@example.com">
+          <a href="mailto:telaprolupavan@gmail.com">
             EMAIL<span className="arrow-out">↗</span>
           </a>
         </div>
