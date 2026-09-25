@@ -130,9 +130,10 @@ const STOPWORDS = new Set(
   "a an and are as at be by did do does for from has have he his how i in is it me of on or so tell that the this to was what when where which who why with you your about pavan pavans".split(" "),
 );
 
-// Light suffix stripping so "study" matches "studied" and "model" matches "models".
+// Light suffix stripping so "study" matches "studied", "model" matches "models"
+// and "evaluate" matches "evaluation".
 const stem = (token) =>
-  token.length <= 4 ? token : token.replace(/ie[sd]$/, "y").replace(/(ing|ed)$/, "").replace(/s$/, "");
+  token.length <= 4 ? token : token.replace(/ie[sd]$/, "y").replace(/ations?$/, "at").replace(/(ings|ing|ed|es|s|e)$/, "");
 
 const tokenize = (text) =>
   text
