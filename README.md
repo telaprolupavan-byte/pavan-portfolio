@@ -39,7 +39,23 @@ netlify/
 public/                      Static files (favicon, link-preview image, hosting rewrites)
 ```
 
-All content lives in `src/data/portfolio.js`. The site and the assistant both read it, so an edit there updates the pages and what the assistant knows. To add a project, add an entry to `projects`; the first entry is the flagship.
+All content lives in `src/data/portfolio.js`. The site and the assistant both read it, so an edit there updates the pages and what the assistant knows. To add a project, add an entry to `projects`; the first entry is the flagship (currently NERO), and its `accent` and `note` fields drive the flagship diagram on the home page.
+
+### Case study sections
+
+Every project needs `summary`, `tags`, `description`, `overview`, `context`, `tech`, `focus` and `architecture`. These optional fields add sections to its case study page, and the assistant indexes each one as its own document:
+
+| Field        | Section           | Shape                                               |
+| ------------ | ----------------- | --------------------------------------------------- |
+| `story`      | Builder's note    | `{ title, paragraphs: [] }`                         |
+| `results`    | Results           | `[{ label, value }]`                                |
+| `pipeline`   | How it works      | `[{ title, question, text }]`                       |
+| `principles` | Design principles | `[{ title, text }]`                                 |
+| `evaluation` | AI evaluation     | `{ intro, rows: [{ capability, metric, value }], findings }` |
+| `roadmap`    | Roadmap           | `[string]`                                          |
+| `repo`       | "View code" links | GitHub URL                                          |
+
+Section numbers adjust automatically to the sections a project has.
 
 ## "Ask AI about me" assistant
 

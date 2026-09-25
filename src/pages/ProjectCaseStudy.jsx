@@ -4,6 +4,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import { projects } from "../data/portfolio.js";
 
 const longestWord = (title) => Math.max(...title.split(" ").map((word) => word.length));
+const pad = (index) => String(index + 1).padStart(2, "0");
+
+// "WHY I BUILT NERO" -> WHY I BUILT / NERO. (the last word on its own line, in red)
+function TwoToneHeading({ text }) {
+  const words = text.split(" ");
+  return (
+    <h2>
+      {words.slice(0, -1).join(" ")}
+      <br />
+      <span>{words.at(-1)}.</span>
+    </h2>
+  );
+}
 
 function ProjectCaseStudy() {
   const { slug } = useParams();
@@ -31,7 +44,7 @@ function ProjectCaseStudy() {
     );
   }
 
-  // Section numbers shift when a project has a results section.
+  // Section numbers shift with the optional sections a project has.
   let sectionNumber = 2;
   const label = (name) => `${String(++sectionNumber).padStart(2, "0")} / ${name}`;
 
@@ -111,6 +124,22 @@ function ProjectCaseStudy() {
           </div>
         </section>
 
+        {project.story && (
+          <section className="case-section">
+            <div className="label">{label("BUILDER'S NOTE")}</div>
+
+            <div className="case-grid">
+              <TwoToneHeading text={project.story.title} />
+
+              <div>
+                {project.story.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {project.results && (
           <section className="case-section">
             <div className="label">{label("RESULTS")}</div>
@@ -123,6 +152,65 @@ function ProjectCaseStudy() {
                 </div>
               ))}
             </div>
+          </section>
+        )}
+
+        {project.pipeline && (
+          <section className="case-section">
+            <div className="label">{label("HOW IT WORKS")}</div>
+
+            <ol className="pipeline-grid">
+              {project.pipeline.map((stage, index) => (
+                <li key={stage.title}>
+                  <span className="pipeline-step">STAGE {pad(index)}</span>
+                  <h3>{stage.title}</h3>
+                  <small>{stage.question}</small>
+                  <p>{stage.text}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {project.principles && (
+          <section className="case-section">
+            <div className="label">{label("DESIGN PRINCIPLES")}</div>
+
+            <div className="principles-grid">
+              {project.principles.map((principle, index) => (
+                <div key={principle.title}>
+                  <span>{pad(index)}</span>
+                  <h3>{principle.title}</h3>
+                  <p>{principle.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {project.evaluation && (
+          <section className="case-section">
+            <div className="label">{label("AI EVALUATION")}</div>
+
+            <p className="case-lead">{project.evaluation.intro}</p>
+
+            <div className="eval-table" role="table" aria-label="Evaluation baseline">
+              <div className="eval-row eval-head" role="row">
+                <span role="columnheader">CAPABILITY</span>
+                <span role="columnheader">METRIC</span>
+                <span role="columnheader">BASELINE</span>
+              </div>
+
+              {project.evaluation.rows.map((row) => (
+                <div className="eval-row" role="row" key={row.metric}>
+                  <span role="cell">{row.capability}</span>
+                  <p role="cell">{row.metric}</p>
+                  <strong role="cell">{row.value}</strong>
+                </div>
+              ))}
+            </div>
+
+            <p className="case-lead case-note">{project.evaluation.findings}</p>
           </section>
         )}
 
@@ -148,7 +236,7 @@ function ProjectCaseStudy() {
             {project.focus.map((item, index) => (
               <div key={item.title}>
                 <span>
-                  {String(index + 1).padStart(2, "0")}
+                  {pad(index)}
                 </span>
 
                 <h3>{item.title}</h3>
@@ -171,6 +259,21 @@ function ProjectCaseStudy() {
             ))}
           </div>
         </section>
+
+        {project.roadmap && (
+          <section className="case-section">
+            <div className="label">{label("ROADMAP")}</div>
+
+            <ol className="roadmap-list">
+              {project.roadmap.map((item, index) => (
+                <li key={item}>
+                  <span>{pad(index)}</span>
+                  <p>{item}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
 
         <section className="case-final">
           <div className="label">{label("NEXT")}</div>
