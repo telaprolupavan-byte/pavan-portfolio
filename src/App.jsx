@@ -163,33 +163,28 @@ const projects = [
 const mindset = [
   {
     number: "01",
-    title: "UNDERSTAND THE PROBLEM",
-    accent: "PROBLEM",
-    text: "Build around the actual requirement, not the technology.",
+    title: "START FROM THE DECISION",
+    text: "Frame the model around who acts on it — a retention team reaching at-risk policyholders, a compliance team triaging the riskiest cases first.",
   },
   {
     number: "02",
-    title: "DESIGN THE SYSTEM",
-    accent: "SYSTEM",
-    text: "Think about APIs, data, services, infrastructure and how the pieces work together.",
+    title: "TRUST THE DATA FIRST",
+    text: "Validate before modeling: missing dates, duplicate records, inconsistent formats, and point-in-time features that prevent temporal leakage.",
   },
   {
     number: "03",
-    title: "BUILD FOR MAINTAINABILITY",
-    accent: "MAINTAINABILITY",
-    text: "Prefer clear architecture, readable code and predictable behavior.",
+    title: "EVALUATE HONESTLY",
+    text: "Pick the metric the business pays for — recall when a missed lapse costs more than a false alarm — and tune thresholds to match.",
   },
   {
     number: "04",
-    title: "IMPROVE ITERATIVELY",
-    accent: "ITERATIVELY",
-    text: "Build, test, observe, fix and refine.",
+    title: "SHIP IT AS SOFTWARE",
+    text: "FastAPI inference, Docker for consistent training and serving, GitHub Actions CI/CD, and experiments tracked in MLflow.",
   },
   {
     number: "05",
-    title: "SHIP",
-    accent: "SHIP",
-    text: "A system is valuable when it actually works in production.",
+    title: "WATCH IT IN PRODUCTION",
+    text: "Monitor inference latency, data drift and model degradation. A model is valuable when it keeps working after launch.",
   },
 ];
 
@@ -234,6 +229,21 @@ function App() {
     document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, []);
+
+  // Tilt the hero portrait toward the pointer (in degrees, via CSS variables).
+  const tiltPortrait = (event) => {
+    if (event.pointerType !== "mouse") return;
+    const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - left) / width - 0.5;
+    const y = (event.clientY - top) / height - 0.5;
+    event.currentTarget.style.setProperty("--tilt-y", (x * 16).toFixed(2));
+    event.currentTarget.style.setProperty("--tilt-x", (y * -12).toFixed(2));
+  };
+
+  const resetPortrait = (event) => {
+    event.currentTarget.style.setProperty("--tilt-x", "0");
+    event.currentTarget.style.setProperty("--tilt-y", "0");
+  };
 
   const scrollTo = (id) => {
     setMenuOpen(false);
@@ -291,7 +301,7 @@ function App() {
       <main>
         {/* 01 / HERO */}
 
-        <section id="home" className="hero">
+        <section id="home" className="hero" onPointerMove={tiltPortrait} onPointerLeave={resetPortrait}>
           <div className="hero-inner">
             <div className="hero-copy">
               <div className="hero-eyebrow">
@@ -301,15 +311,16 @@ function App() {
 
               <h1 className="hero-title">
                 <span className="hero-line">PAVAN</span>
-                <span className="hero-line">SAGAR</span>
+                <span className="hero-line hero-line-portrait">
+                  SAGAR
+                  <span className="hero-portrait" aria-hidden="true">
+                    <span className="hero-portrait-tilt">
+                      <img src={heroImage} alt="" width="520" height="540" />
+                    </span>
+                  </span>
+                </span>
                 <span className="hero-line red">TELAPROLU</span>
               </h1>
-
-              <img
-                src={heroImage}
-                alt="Pavan Sagar Telaprolu"
-                className="hero-genemoji"
-              />
 
               <div className="hero-tags">
                 GENERATIVE AI <i>•</i> MACHINE LEARNING <i>•</i> MLOPS
@@ -398,7 +409,7 @@ function App() {
                   <div className="profile-chip-info">
                     <strong>PAVAN</strong>
                     <span>AI/ML ENGINEER</span>
-                    <span>NJ / USA</span>
+                    <span>HARRISON, NJ</span>
                   </div>
                 </div>
               </div>
@@ -422,12 +433,12 @@ function App() {
 
           <div className="hero-meta meta-left">
             <span>BASED IN</span>
-            <strong>NEW JERSEY / USA</strong>
+            <strong>HARRISON, NEW JERSEY / USA</strong>
           </div>
 
           <div className="hero-meta meta-right">
-            <span>STATUS</span>
-            <strong>AVAILABLE FOR SELECTED PROJECTS</strong>
+            <span>CURRENTLY</span>
+            <strong>AI/ML ENGINEER @ LUCID SOFTWARE</strong>
           </div>
 
           <div className="hero-foot">

@@ -402,38 +402,82 @@ button {
   position: relative;
 }
 
-.hero-genemoji {
+/* Portrait: sized in em and anchored to the SAGAR line, so it tracks the
+   title at every breakpoint. TELAPROLU sits in front and hides the cut edge. */
+.hero-line-portrait {
+  position: relative;
+  width: fit-content;
+}
+
+.hero-line.red {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-portrait {
   position: absolute;
-  z-index: 10;
-  width: auto;
-  height: clamp(140px, calc(17.2vw - 10px), 252px);
-  left: 56%;
-  top: 39px;
-  object-fit: contain;
+  z-index: 1;
+  left: calc(100% + 0.03em);
+  bottom: -0.2em;
+  width: 1.52em;
+  height: 1.58em;
   pointer-events: none;
-  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.5));
-  animation: genemoji-float 5s ease-in-out infinite;
+  perspective: 700px;
 }
 
-@keyframes genemoji-float {
+.hero-portrait::before {
+  /* red back-light behind the head */
+  content: "";
+  position: absolute;
+  inset: 4% -8% 22% 2%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 42%, rgba(239, 21, 29, 0.42), rgba(239, 21, 29, 0.1) 48%, transparent 70%);
+  filter: blur(18px);
+  transform: translate3d(calc(var(--tilt-y, 0) * -0.6px), calc(var(--tilt-x, 0) * 0.6px), 0);
+  transition: transform 0.4s ease-out;
+}
+
+.hero-portrait-tilt {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(var(--tilt-x, 0) * 1deg)) rotateY(calc(var(--tilt-y, 0) * 1deg));
+  transition: transform 0.4s ease-out;
+}
+
+.hero-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  /* rim light from the red side, soft key shadow, and a fade on the cut edge */
+  filter:
+    drop-shadow(-5px -2px 10px rgba(239, 21, 29, 0.38))
+    drop-shadow(0 22px 28px rgba(0, 0, 0, 0.6))
+    contrast(1.06)
+    saturate(1.06);
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 80%, transparent 99%),
+    linear-gradient(to right, transparent, #000 7%, #000 86%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, #000 80%, transparent 99%),
+    linear-gradient(to right, transparent, #000 7%, #000 86%, transparent);
+  mask-composite: intersect;
+  animation: portrait-float 6s ease-in-out infinite;
+}
+
+@keyframes portrait-float {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 
   50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes genemoji-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-8px);
+    transform: translate3d(0, -0.05em, 0);
   }
 }
 
@@ -1930,12 +1974,6 @@ footer {
     margin-right: 0;
   }
 
-  .hero-genemoji {
-    width: auto;
-    height: clamp(90px, calc(15.6vw - 10px), 150px);
-    left: 55%;
-    top: 39px;
-  }
 
   .interface-panel {
     width: min(430px, 100%);
@@ -2134,12 +2172,6 @@ footer {
     padding-bottom: 52px;
   }
 
-  .hero-genemoji {
-    height: clamp(90px, calc(16.7vw + 26px), 145px);
-    left: 57%;
-    /* rest the image on the TELAPROLU line: line top minus image height */
-    top: calc(min(22px + 27vw, 173px) + 5px - clamp(90px, calc(16.7vw + 26px), 145px));
-  }
 
   .interface-back {
     display: none;
@@ -2356,6 +2388,11 @@ footer {
 
   .reveal {
     opacity: 1;
+    transform: none;
+  }
+
+  .hero-portrait-tilt,
+  .hero-portrait::before {
     transform: none;
   }
 }

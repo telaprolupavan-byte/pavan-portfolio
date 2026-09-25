@@ -1,6 +1,6 @@
 # Pavan Sagar Telaprolu — Portfolio
 
-Personal portfolio for Pavan Sagar Telaprolu, Software Engineer working across AI/ML, backend systems, data and cloud infrastructure.
+Personal portfolio for Pavan Sagar Telaprolu, AI/ML Engineer building machine learning, generative AI (RAG, LLM) and MLOps systems.
 
 Built with React 19, Vite and React Router, with icons from `lucide-react`.
 
