@@ -26,15 +26,30 @@ npm run dev      # start the dev server at http://localhost:5173
 
 ```
 src/
-  main.jsx                   Router setup ("/" and "/projects/:slug")
-  App.jsx                    Home page and its content (experience, stack, projects, education)
-  App.css                    Styles for the home and case study pages
-  pages/ProjectCaseStudy.jsx Case study page and per-project content, keyed by slug
+  main.jsx                   Router setup ("/" and "/projects/:slug") and the assistant widget
+  App.jsx                    Home page
+  App.css                    Styles for the home page, case studies and assistant
+  data/portfolio.js          All content: profile, experience, projects, education
+  pages/ProjectCaseStudy.jsx Case study page, rendered from `projects`
+  components/AskPavan.jsx    "Ask AI about me" chat widget
   assets/                    Images
-public/                      Static files copied as-is (favicon, hosting rewrites)
+netlify/
+  functions/ask.mjs          Assistant endpoint (Claude, with citations)
+  lib/knowledge.mjs          Splits portfolio.js into documents and ranks them with BM25
+public/                      Static files (favicon, link-preview image, hosting rewrites)
 ```
 
-To add a project, add an entry to `projects` in `src/App.jsx` and a matching entry, keyed by the same `slug`, to `projectData` in `src/pages/ProjectCaseStudy.jsx`.
+All content lives in `src/data/portfolio.js`. The site and the assistant both read it, so an edit there updates the pages and what the assistant knows. To add a project, add an entry to `projects`; the first entry is the flagship.
+
+## "Ask AI about me" assistant
+
+A small retrieval-augmented chat: for each question, `netlify/lib/knowledge.mjs` ranks the portfolio documents with BM25, and `netlify/functions/ask.mjs` sends the best matches to Claude as citable documents. Answers come only from the portfolio, and the widget links the sources Claude cited.
+
+To turn it on, add an Anthropic API key in Netlify under **Site configuration → Environment variables** as `ANTHROPIC_API_KEY`, then redeploy. Without it, the widget tells visitors the assistant is offline and shows the contact email. Optional: `ASSISTANT_MODEL` overrides the model (default `claude-opus-5`).
+
+The endpoint caps question length and history, and rate-limits each IP on a best-effort basis. Set a monthly spend limit on the key in the Anthropic Console as the real cost cap.
+
+Locally, `npm run dev` serves the site only. Use `npx netlify dev` to run the site and the function together.
 
 ## Deployment
 

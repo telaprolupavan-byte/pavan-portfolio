@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import App from "./App.jsx";
 import ProjectCaseStudy from "./pages/ProjectCaseStudy.jsx";
+import AskPavan from "./components/AskPavan.jsx";
 
 import "./index.css";
 
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")).render(
           element={<ProjectCaseStudy />}
         />
       </Routes>
+      <AskPavan />
     </BrowserRouter>
   </StrictMode>
 );

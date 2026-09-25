@@ -1,207 +1,32 @@
 import { ArrowDownRight, ArrowUpRight, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import heroImage from "./assets/pavan.webp";
-
-const experience = [
-  {
-    number: "01",
-    dates: "JAN 2025 — PRESENT",
-    role: "AI/ML ENGINEER",
-    company: "LUCID SOFTWARE",
-    location: "NEW JERSEY · REMOTE · CONTRACT",
-    description:
-      "Building the ML and AI capabilities of LFRAS, a compliance platform for document collection, validation, submissions, expiration tracking, ticketing and reporting.",
-    highlights: [
-      "Built predictive ML workflows on historical compliance and submission data to flag potential compliance issues early, so teams could prioritize the highest-risk cases first.",
-      "Engineered features from submission behavior, document completeness, validation status and expiration signals; trained Random Forest classifiers with cross-validation and hyperparameter tuning.",
-      "Built semantic search and RAG over compliance information using OpenAI embeddings (text-embedding-3-small) stored in PostgreSQL with pgvector.",
-      "Contributed to GPT-4 compliance analysis that combines retrieved context with the model, making relevant information faster to review and interpret.",
-      "Served models through FastAPI inference services and took ML/AI features from experimentation through integration into the product.",
-    ],
-    tech: ["PYTHON", "PANDAS", "SCIKIT-LEARN", "RANDOM FOREST", "RAG", "SEMANTIC SEARCH", "GPT-4", "OPENAI EMBEDDINGS", "PGVECTOR", "POSTGRESQL", "FASTAPI", "DOCKER"],
-  },
-  {
-    number: "02",
-    dates: "AUG 2023 — DEC 2024",
-    role: "MACHINE LEARNING ENGINEER",
-    company: "PRUDENTIAL FINANCIAL",
-    location: "NEW JERSEY · HYBRID · CONTRACT",
-    description:
-      "Customer Retention & LTV team — built a lapse prediction model that flags at-risk policyholders early so the retention team can step in before policies lapse.",
-    highlights: [
-      "Extracted ~3 years of policy, premium-payment and transaction data (2M+ records) from Snowflake with SQL, with validation checks for missing, duplicate and inconsistent records.",
-      "Engineered behavioral features in Pandas (payment latency, missed-payment frequency, policy age, engagement) with point-in-time generation to prevent temporal leakage.",
-      "Trained Logistic Regression, XGBoost and LightGBM models, tuned with GridSearchCV and tracked in MLflow; optimized for recall with probability threshold tuning.",
-      "Containerized training and serving with Docker, built FastAPI inference endpoints and GitHub Actions CI/CD for testing, model validation and image publishing.",
-      "Supported daily batch scoring and monitored inference latency, data drift and model performance degradation.",
-    ],
-    tech: ["PYTHON", "SQL", "SNOWFLAKE", "PANDAS", "SCIKIT-LEARN", "XGBOOST", "LIGHTGBM", "MLFLOW", "DOCKER", "FASTAPI", "GITHUB ACTIONS"],
-  },
-  {
-    number: "03",
-    dates: "JUL 2019 — NOV 2021",
-    role: "SYSTEM ENGINEER",
-    company: "IWAY SOFTWARE",
-    location: "INDIA · ON-SITE · FULL-TIME",
-    description:
-      "Developed and supported software solutions using Python and scripting across application data, SQL databases and data-processing workflows.",
-    highlights: [
-      "Built automation scripts to improve repetitive technical and operational processes.",
-      "Troubleshot application and system issues and contributed to production support.",
-      "Worked with APIs and backend components to integrate application services.",
-      "Collaborated with development teams across the SDLC using Git-based workflows.",
-    ],
-    tech: ["PYTHON", "SQL", "GITHUB", "AUTOMATION", "APIS"],
-  },
-];
-
-const kaivan = {
-  number: "01",
-  title: "KAIVAN",
-  category: "AI/ML DATA PLATFORM",
-  year: "MAR 2026 — PRESENT",
-  description:
-    "A full-stack platform for my family business that turns operational data into a foundation for intelligent, data-driven applications — now expanding toward predictive analytics and decision support.",
-  tech: ["NODE.JS", "EXPRESS", "MONGODB", "REST API", "PYTHON"],
-  slug: "kaivan",
-};
-
-const projects = [
-  {
-    number: "02",
-    title: "CLOUD INFRASTRUCTURE MONITORING & INCIDENT MANAGEMENT",
-    year: "AUG 2025 — PRESENT",
-    description:
-      "Monitoring, troubleshooting and incident resolution across AWS and Azure — CloudWatch and Azure Monitor alerts, VNets, subnets, firewalls, IAM and SOP documentation.",
-    tech: ["AWS", "AZURE", "CLOUDWATCH", "AZURE MONITOR", "IAM"],
-    slug: "cloud-infrastructure",
-  },
-  {
-    number: "03",
-    title: "GEMINI AI CLONE — GENERATIVE AI ASSISTANT",
-    year: "JAN 2024 — MAY 2024",
-    description:
-      "A conversational AI assistant with a real-time chat interface, prompt processing, conversation handling and dynamic response rendering on top of an LLM backend.",
-    tech: ["PYTHON", "LLMS", "PROMPT ENGINEERING", "REACT"],
-    slug: "gemini-ai-clone",
-  },
-  {
-    number: "04",
-    title: "SUPERVISED CLASSIFICATION — DIABETES PREDICTION",
-    year: "JAN 2023 — APR 2023",
-    description:
-      "End-to-end pipeline comparing Random Forest, Decision Tree and LSTM with 10-fold cross-validation. The LSTM reached 0.81 AUC and 71.3% F1, outperforming the traditional models.",
-    tech: ["PYTHON", "SCIKIT-LEARN", "TENSORFLOW", "LSTM"],
-    slug: "classification-model",
-  },
-  {
-    number: "05",
-    title: "AMAZON API GATEWAY — CLOUD API INTEGRATION",
-    year: "MAR 2019 — AUG 2019",
-    description:
-      "Designed, configured and tested RESTful APIs on Amazon API Gateway — resources, HTTP methods, request handling and backend endpoint integrations.",
-    tech: ["AWS", "API GATEWAY", "REST APIS"],
-    slug: "amazon-api-gateway",
-  },
-  {
-    number: "06",
-    title: "DELVE UNV — UNIVERSITY SEARCH PLATFORM",
-    year: "2023",
-    description:
-      "A team project at NJIT: a data-driven platform that helps international students discover and compare universities by program, location, tuition and eligibility.",
-    tech: ["PYTHON", "REACT", "SQL", "REST APIS"],
-    slug: "delve-unv",
-  },
-  {
-    number: "07",
-    title: "TURTLEBACK ZOO — FULL-STACK APPLICATION",
-    year: "NOV 2023 — DEC 2023",
-    description:
-      "A database-driven full-stack application for managing zoo operations — animals, buildings, attractions, employees and daily activities.",
-    tech: ["REACT", "NODE.JS", "SQL", "REST APIS"],
-    slug: "turtleback-zoo",
-  },
-  {
-    number: "08",
-    title: "DDOS DETECTION WITH SUPERVISED ML",
-    year: "SEP 2022 — DEC 2022",
-    description:
-      "Classification pipeline on 4M+ KDD Cup 99 network records. Random Forest reached 97.5% accuracy, and threshold tuning cut false positives by over 35%.",
-    tech: ["PYTHON", "SCIKIT-LEARN", "RANDOM FOREST", "CYBERSECURITY"],
-    slug: "ddos-detection",
-  },
-  {
-    number: "09",
-    title: "AI-POWERED TRADING SIGNAL ASSISTANT",
-    year: "JAN 2022 — APR 2022",
-    description:
-      "Analyzes candlestick chart images and video frames across 78+ patterns to generate Buy / Sell / Hold signals, with under 1.2s inference per image.",
-    tech: ["TENSORFLOW", "OPENCV", "FASTAPI", "REACT", "TYPESCRIPT"],
-    slug: "trading-signal-assistant",
-  },
-  {
-    number: "10",
-    title: "CUSTOMER CHURN PREDICTION",
-    year: "OCT 2019 — DEC 2021",
-    description:
-      "Predicts customer churn from historical customer and service data, comparing Logistic Regression, Decision Tree, Random Forest and SVM.",
-    tech: ["PYTHON", "PANDAS", "SCIKIT-LEARN", "SQL"],
-    slug: "customer-churn",
-  },
-];
-
-const mindset = [
-  {
-    number: "01",
-    title: "START FROM THE DECISION",
-    text: "Frame the model around who acts on it — a retention team reaching at-risk policyholders, a compliance team triaging the riskiest cases first.",
-  },
-  {
-    number: "02",
-    title: "TRUST THE DATA FIRST",
-    text: "Validate before modeling: missing dates, duplicate records, inconsistent formats, and point-in-time features that prevent temporal leakage.",
-  },
-  {
-    number: "03",
-    title: "EVALUATE HONESTLY",
-    text: "Pick the metric the business pays for — recall when a missed lapse costs more than a false alarm — and tune thresholds to match.",
-  },
-  {
-    number: "04",
-    title: "SHIP IT AS SOFTWARE",
-    text: "FastAPI inference, Docker for consistent training and serving, GitHub Actions CI/CD, and experiments tracked in MLflow.",
-  },
-  {
-    number: "05",
-    title: "WATCH IT IN PRODUCTION",
-    text: "Monitor inference latency, data drift and model degradation. A model is valuable when it keeps working after launch.",
-  },
-];
-
-const education = [
-  {
-    number: "01",
-    dates: "JAN 2022 — DEC 2023",
-    school: "NEW JERSEY INSTITUTE OF TECHNOLOGY",
-    degree: "MASTER'S DEGREE",
-    field: "COMPUTER AND INFORMATION SCIENCES, GENERAL",
-  },
-  {
-    number: "02",
-    dates: "MAR 2015 — MAY 2019",
-    school: "VINAYAKA MISSION'S RESEARCH FOUNDATION – UNIVERSITY",
-    degree: "BACHELOR'S DEGREE",
-    field: "COMPUTER SCIENCE",
-  },
-];
+import { education, experience, mindset, profile, projects } from "./data/portfolio.js";
 
 const aboutPanels = [
   { number: "01", title: "MACHINE LEARNING", items: ["PREDICTIVE MODELS", "FEATURE ENGINEERING", "MODEL EVALUATION"] },
   { number: "02", title: "GENERATIVE AI", items: ["RAG", "VECTOR SEARCH", "LLM APPLICATIONS"] },
   { number: "03", title: "MLOPS", items: ["FASTAPI SERVING", "DOCKER / CI/CD", "MONITORING"] },
 ];
+
+const [flagship, ...otherProjects] = projects;
+
+function ProjectLinks({ project, onOpen, iconSize }) {
+  return (
+    <div className="case-links">
+      <button className="case-link" onClick={onOpen}>
+        VIEW CASE STUDY <ArrowUpRight size={iconSize} />
+      </button>
+      {project.repo && (
+        <a className="case-link" href={project.repo} target="_blank" rel="noreferrer">
+          VIEW CODE <ArrowUpRight size={iconSize} />
+        </a>
+      )}
+    </div>
+  );
+}
 
 function App() {
   const navigate = useNavigate();
@@ -489,10 +314,15 @@ function App() {
               <br />
               <span>WORK.</span>
             </h2>
-            <p>10 PROJECTS</p>
+            <p>
+              {projects.length} PROJECTS
+              <a href={profile.github} target="_blank" rel="noreferrer">
+                CODE ON GITHUB<span className="arrow-out">↗</span>
+              </a>
+            </p>
           </div>
 
-          {/* FLAGSHIP — KAIVAN */}
+          {/* FLAGSHIP */}
 
           <article className="kaivan-feature reveal">
             <div className="kaivan-copy">
@@ -501,41 +331,36 @@ function App() {
                 <span className="kaivan-flag">FLAGSHIP PROJECT</span>
               </div>
 
-              <h3 className="kaivan-title">{kaivan.title}</h3>
-              <span className="kaivan-category">{kaivan.category}</span>
-              <p className="kaivan-desc">{kaivan.description}</p>
+              <h3 className="kaivan-title">{flagship.title}</h3>
+              <span className="kaivan-category">{flagship.category}</span>
+              <p className="kaivan-desc">{flagship.summary}</p>
 
               <div className="tech-tags">
-                {kaivan.tech.map((tag) => <span key={tag}>{tag}</span>)}
+                {flagship.tags.map((tag) => <span key={tag}>{tag}</span>)}
               </div>
 
-              <small className="kaivan-date">{kaivan.year}</small>
+              <small className="kaivan-date">{flagship.dates}</small>
 
-              <button className="case-link" onClick={() => navigate(`/projects/${kaivan.slug}`)}>
-                VIEW CASE STUDY <ArrowUpRight size={14} />
-              </button>
+              <ProjectLinks project={flagship} onOpen={() => navigate(`/projects/${flagship.slug}`)} iconSize={14} />
             </div>
 
             <div className="kaivan-visual">
               <div className="kaivan-screen">
                 <div className="mock-top">
-                  <span>KAIVAN / SYSTEM OVERVIEW</span>
+                  <span>{flagship.title} / SYSTEM OVERVIEW</span>
                   <span>01</span>
                 </div>
 
                 <div className="kaivan-arch">
-                  <div className="kaivan-node">CLIENT</div>
-                  <span className="kaivan-arrow">↓</span>
-                  <div className="kaivan-node">REST API</div>
-                  <span className="kaivan-arrow">↓</span>
-                  <div className="kaivan-node accent">NODE / EXPRESS</div>
-                  <span className="kaivan-arrow">↓</span>
-                  <div className="kaivan-node">MONGODB</div>
+                  {flagship.architecture.map((step, index) => (
+                    <Fragment key={step}>
+                      {index > 0 && <span className="kaivan-arrow">↓</span>}
+                      <div className={`kaivan-node ${index === flagship.accent ? "accent" : ""}`}>{step}</div>
+                    </Fragment>
+                  ))}
                 </div>
 
-                <div className="kaivan-note">
-                  BUSINESS DATA / REST APIS / AI/ML-READY
-                </div>
+                <div className="kaivan-note">{flagship.note}</div>
               </div>
             </div>
           </article>
@@ -543,26 +368,27 @@ function App() {
           {/* REMAINING PROJECTS */}
 
           <div className="project-list">
-            {projects.map((project) => (
-              <article className="project-row reveal" key={project.number}>
-                <span className="project-row-number" aria-hidden="true">{project.number}</span>
+            {otherProjects.map((project, index) => {
+              const number = String(index + 2).padStart(2, "0");
+              return (
+                <article className="project-row reveal" key={project.slug}>
+                  <span className="project-row-number" aria-hidden="true">{number}</span>
 
-                <div className="project-row-main">
-                  <h3>{project.title}</h3>
-                  <div className="tech-tags project-row-tags">
-                    {project.tech.map((tag) => <span key={tag}>{tag}</span>)}
+                  <div className="project-row-main">
+                    <h3>{project.listTitle}</h3>
+                    <div className="tech-tags project-row-tags">
+                      {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                    </div>
                   </div>
-                </div>
 
-                <div className="project-row-side">
-                  <small>{project.year}</small>
-                  <p>{project.description}</p>
-                  <button className="case-link" onClick={() => navigate(`/projects/${project.slug}`)}>
-                    VIEW CASE STUDY <ArrowUpRight size={13} />
-                  </button>
-                </div>
-              </article>
-            ))}
+                  <div className="project-row-side">
+                    <small>{project.dates}</small>
+                    <p>{project.summary}</p>
+                    <ProjectLinks project={project} onOpen={() => navigate(`/projects/${project.slug}`)} iconSize={13} />
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
 
