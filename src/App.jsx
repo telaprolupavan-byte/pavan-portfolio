@@ -20,7 +20,7 @@ const experience = [
       "Contributed to GPT-4 compliance analysis that combines retrieved context with the model, making relevant information faster to review and interpret.",
       "Served models through FastAPI inference services and took ML/AI features from experimentation through integration into the product.",
     ],
-    tech: ["PYTHON", "SCIKIT-LEARN", "RAG", "GPT-4", "PGVECTOR", "POSTGRESQL", "FASTAPI", "DOCKER"],
+    tech: ["PYTHON", "PANDAS", "SCIKIT-LEARN", "RANDOM FOREST", "RAG", "SEMANTIC SEARCH", "GPT-4", "OPENAI EMBEDDINGS", "PGVECTOR", "POSTGRESQL", "FASTAPI", "DOCKER"],
   },
   {
     number: "02",
@@ -37,7 +37,7 @@ const experience = [
       "Containerized training and serving with Docker, built FastAPI inference endpoints and GitHub Actions CI/CD for testing, model validation and image publishing.",
       "Supported daily batch scoring and monitored inference latency, data drift and model performance degradation.",
     ],
-    tech: ["PYTHON", "SQL", "SNOWFLAKE", "XGBOOST", "LIGHTGBM", "MLFLOW", "DOCKER", "GITHUB ACTIONS"],
+    tech: ["PYTHON", "SQL", "SNOWFLAKE", "PANDAS", "SCIKIT-LEARN", "XGBOOST", "LIGHTGBM", "MLFLOW", "DOCKER", "FASTAPI", "GITHUB ACTIONS"],
   },
   {
     number: "03",
@@ -53,16 +53,8 @@ const experience = [
       "Worked with APIs and backend components to integrate application services.",
       "Collaborated with development teams across the SDLC using Git-based workflows.",
     ],
-    tech: ["PYTHON", "SQL", "AUTOMATION", "APIS", "GIT"],
+    tech: ["PYTHON", "SQL", "GITHUB", "AUTOMATION", "APIS"],
   },
-];
-
-const stack = [
-  { number: "01", title: "LANGUAGES", items: ["PYTHON", "SQL", "JAVASCRIPT", "TYPESCRIPT", "JAVA"] },
-  { number: "02", title: "MACHINE LEARNING", items: ["SCIKIT-LEARN", "XGBOOST", "LIGHTGBM", "PYTORCH", "TENSORFLOW", "OPENCV"] },
-  { number: "03", title: "GENERATIVE AI", items: ["RAG", "GPT-4", "OPENAI EMBEDDINGS", "PGVECTOR", "SEMANTIC SEARCH", "PROMPT ENGINEERING"] },
-  { number: "04", title: "MLOPS / BACKEND", items: ["FASTAPI", "DOCKER", "MLFLOW", "GITHUB ACTIONS", "NODE.JS", "REST APIS"] },
-  { number: "05", title: "DATA / CLOUD", items: ["PANDAS", "NUMPY", "SNOWFLAKE", "POSTGRESQL", "MONGODB", "AWS", "AZURE"] },
 ];
 
 const kaivan = {
@@ -232,7 +224,7 @@ function App() {
 
   // Tilt the hero portrait toward the pointer (in degrees, via CSS variables).
   const tiltPortrait = (event) => {
-    if (event.pointerType !== "mouse") return;
+    if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - left) / width - 0.5;
     const y = (event.clientY - top) / height - 0.5;
@@ -279,7 +271,6 @@ function App() {
           <button onClick={() => scrollTo("projects")}>WORK</button>
           <button onClick={() => scrollTo("about")}>ABOUT</button>
           <button onClick={() => scrollTo("experience")}>EXPERIENCE</button>
-          <button onClick={() => scrollTo("stack")}>STACK</button>
         </div>
 
         <div className="nav-right">
@@ -315,7 +306,7 @@ function App() {
                   SAGAR
                   <span className="hero-portrait" aria-hidden="true">
                     <span className="hero-portrait-tilt">
-                      <img src={heroImage} alt="" width="520" height="540" />
+                      <img src={heroImage} alt="" width="1000" height="1007" decoding="async" fetchPriority="high" />
                     </span>
                   </span>
                 </span>
@@ -412,21 +403,21 @@ function App() {
                     <span>HARRISON, NJ</span>
                   </div>
                 </div>
-              </div>
 
-              <div className="float-card float-1 glass">
-                <span className="float-num">01</span>
-                <span className="float-title">PREDICTIVE<br />ML</span>
-              </div>
+                <div className="float-card float-1 glass">
+                  <span className="float-num">01</span>
+                  <span className="float-title">PREDICTIVE<br />ML</span>
+                </div>
 
-              <div className="float-card float-2 glass">
-                <span className="float-num">02</span>
-                <span className="float-title">LLM / RAG<br />APPLICATIONS</span>
-              </div>
+                <div className="float-card float-2 glass">
+                  <span className="float-num">02</span>
+                  <span className="float-title">LLM / RAG<br />APPLICATIONS</span>
+                </div>
 
-              <div className="float-card float-3 glass">
-                <span className="float-num">03</span>
-                <span className="float-title">MLOPS<br />PIPELINES</span>
+                <div className="float-card float-3 glass">
+                  <span className="float-num">03</span>
+                  <span className="float-title">MLOPS<br />PIPELINES</span>
+                </div>
               </div>
             </div>
           </div>
@@ -487,42 +478,10 @@ function App() {
           </div>
         </section>
 
-        {/* 03 / STACK */}
-
-        <section id="stack" className="section stack-section">
-          <div className="label reveal">03 / TECHNOLOGY</div>
-
-          <div className="stack-layout">
-            <div className="stack-left">
-              <h2 className="stack-title reveal">
-                WHAT
-                <br />
-                I WORK <span>WITH</span>
-              </h2>
-
-              <div className="stack-meta reveal">
-                {stack.map((group) => <span key={group.number}>{group.title}</span>)}
-              </div>
-            </div>
-
-            <div className="stack-panel">
-              {stack.map((group) => (
-                <article className="stack-group reveal" key={group.number}>
-                  <span className="stack-num">{group.number}</span>
-                  <h3>{group.title}</h3>
-                  <div className="stack-items">
-                    {group.items.map((item) => <span key={item}>{item}</span>)}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 04 / SELECTED WORK */}
+        {/* 03 / SELECTED WORK */}
 
         <section id="projects" className="section projects">
-          <div className="label reveal">04 / SELECTED WORK</div>
+          <div className="label reveal">03 / SELECTED WORK</div>
 
           <div className="project-heading reveal">
             <h2>
@@ -607,10 +566,10 @@ function App() {
           </div>
         </section>
 
-        {/* 05 / ABOUT */}
+        {/* 04 / ABOUT */}
 
         <section id="about" className="section about-section">
-          <div className="label reveal">05 / ABOUT</div>
+          <div className="label reveal">04 / ABOUT</div>
 
           <div className="about-split">
             <div className="about-left">
@@ -666,10 +625,10 @@ function App() {
           </div>
         </section>
 
-        {/* 06 / ENGINEERING MINDSET */}
+        {/* 05 / ENGINEERING MINDSET */}
 
         <section id="mindset" className="section mindset-section">
-          <div className="label reveal">06 / ENGINEERING MINDSET</div>
+          <div className="label reveal">05 / ENGINEERING MINDSET</div>
 
           <h2 className="mindset-title reveal">
             FROM
@@ -690,10 +649,10 @@ function App() {
           </div>
         </section>
 
-        {/* 07 / EDUCATION */}
+        {/* 06 / EDUCATION */}
 
         <section id="education" className="section education-section">
-          <div className="label reveal">07 / EDUCATION</div>
+          <div className="label reveal">06 / EDUCATION</div>
 
           <h2 className="education-title reveal">
             BACKGROUND
@@ -718,10 +677,10 @@ function App() {
           </div>
         </section>
 
-        {/* 08 / CONTACT */}
+        {/* 07 / CONTACT */}
 
         <section id="contact" className="contact">
-          <div className="label reveal">08 / CONTACT</div>
+          <div className="label reveal">07 / CONTACT</div>
 
           <h2 className="reveal">
             LET&apos;S BUILD
@@ -751,7 +710,7 @@ function App() {
         </section>
       </main>
 
-      {/* 09 / FOOTER */}
+      {/* 08 / FOOTER */}
 
       <footer>
         <div className="footer-brand">
