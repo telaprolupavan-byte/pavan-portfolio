@@ -9,50 +9,70 @@ const experience = [
     number: "01",
     dates: "JAN 2025 — PRESENT",
     role: "AI/ML ENGINEER",
-    company: "LUCID COMPLIANCE",
-    location: "NEW JERSEY · REMOTE",
+    company: "LUCID SOFTWARE",
+    location: "NEW JERSEY · REMOTE · CONTRACT",
     description:
-      "Developed Python-based automation and data-processing workflows supporting AI/ML initiatives.",
-    tech: ["PYTHON", "AUTOMATION", "DATA PROCESSING"],
+      "Building the ML and AI capabilities of LFRAS, a compliance platform for document collection, validation, submissions, expiration tracking, ticketing and reporting.",
+    highlights: [
+      "Built predictive ML workflows on historical compliance and submission data to flag potential compliance issues early, so teams could prioritize the highest-risk cases first.",
+      "Engineered features from submission behavior, document completeness, validation status and expiration signals; trained Random Forest classifiers with cross-validation and hyperparameter tuning.",
+      "Built semantic search and RAG over compliance information using OpenAI embeddings (text-embedding-3-small) stored in PostgreSQL with pgvector.",
+      "Contributed to GPT-4 compliance analysis that combines retrieved context with the model, making relevant information faster to review and interpret.",
+      "Served models through FastAPI inference services and took ML/AI features from experimentation through integration into the product.",
+    ],
+    tech: ["PYTHON", "SCIKIT-LEARN", "RAG", "GPT-4", "PGVECTOR", "POSTGRESQL", "FASTAPI", "DOCKER"],
   },
   {
     number: "02",
     dates: "AUG 2023 — DEC 2024",
     role: "MACHINE LEARNING ENGINEER",
     company: "PRUDENTIAL FINANCIAL",
-    location: "NEW JERSEY · HYBRID",
+    location: "NEW JERSEY · HYBRID · CONTRACT",
     description:
-      "Developed Python-based machine learning workflows for data preparation, feature engineering and model development.",
-    tech: ["PYTHON", "MACHINE LEARNING", "FEATURE ENGINEERING"],
+      "Customer Retention & LTV team — built a lapse prediction model that flags at-risk policyholders early so the retention team can step in before policies lapse.",
+    highlights: [
+      "Extracted ~3 years of policy, premium-payment and transaction data (2M+ records) from Snowflake with SQL, with validation checks for missing, duplicate and inconsistent records.",
+      "Engineered behavioral features in Pandas (payment latency, missed-payment frequency, policy age, engagement) with point-in-time generation to prevent temporal leakage.",
+      "Trained Logistic Regression, XGBoost and LightGBM models, tuned with GridSearchCV and tracked in MLflow; optimized for recall with probability threshold tuning.",
+      "Containerized training and serving with Docker, built FastAPI inference endpoints and GitHub Actions CI/CD for testing, model validation and image publishing.",
+      "Supported daily batch scoring and monitored inference latency, data drift and model performance degradation.",
+    ],
+    tech: ["PYTHON", "SQL", "SNOWFLAKE", "XGBOOST", "LIGHTGBM", "MLFLOW", "DOCKER", "GITHUB ACTIONS"],
   },
   {
     number: "03",
     dates: "JUL 2019 — NOV 2021",
     role: "SYSTEM ENGINEER",
     company: "IWAY SOFTWARE",
-    location: "INDIA · ON-SITE",
+    location: "INDIA · ON-SITE · FULL-TIME",
     description:
-      "Developed and supported software solutions using Python and scripting.",
-    tech: ["PYTHON", "SCRIPTING", "SOFTWARE DEVELOPMENT"],
+      "Developed and supported software solutions using Python and scripting across application data, SQL databases and data-processing workflows.",
+    highlights: [
+      "Built automation scripts to improve repetitive technical and operational processes.",
+      "Troubleshot application and system issues and contributed to production support.",
+      "Worked with APIs and backend components to integrate application services.",
+      "Collaborated with development teams across the SDLC using Git-based workflows.",
+    ],
+    tech: ["PYTHON", "SQL", "AUTOMATION", "APIS", "GIT"],
   },
 ];
 
 const stack = [
-  { number: "01", title: "LANGUAGES", items: ["PYTHON", "JAVA", "JAVASCRIPT", "SQL"] },
-  { number: "02", title: "BACKEND", items: ["SPRING BOOT", "REST APIS", "DJANGO", "FASTAPI"] },
-  { number: "03", title: "DATA", items: ["MONGODB", "MYSQL", "DATA PROCESSING", "DATA ANALYSIS"] },
-  { number: "04", title: "CLOUD / INFRASTRUCTURE", items: ["AWS", "AZURE", "CLOUD INFRASTRUCTURE", "CLOUD OPERATIONS"] },
-  { number: "05", title: "FRONTEND", items: ["REACT", "HTML5", "CSS3", "BOOTSTRAP"] },
+  { number: "01", title: "LANGUAGES", items: ["PYTHON", "SQL", "JAVASCRIPT", "TYPESCRIPT", "JAVA"] },
+  { number: "02", title: "MACHINE LEARNING", items: ["SCIKIT-LEARN", "XGBOOST", "LIGHTGBM", "PYTORCH", "TENSORFLOW", "OPENCV"] },
+  { number: "03", title: "GENERATIVE AI", items: ["RAG", "GPT-4", "OPENAI EMBEDDINGS", "PGVECTOR", "SEMANTIC SEARCH", "PROMPT ENGINEERING"] },
+  { number: "04", title: "MLOPS / BACKEND", items: ["FASTAPI", "DOCKER", "MLFLOW", "GITHUB ACTIONS", "NODE.JS", "REST APIS"] },
+  { number: "05", title: "DATA / CLOUD", items: ["PANDAS", "NUMPY", "SNOWFLAKE", "POSTGRESQL", "MONGODB", "AWS", "AZURE"] },
 ];
 
 const kaivan = {
   number: "01",
   title: "KAIVAN",
-  category: "DATA-DRIVEN BUSINESS PLATFORM",
+  category: "AI/ML DATA PLATFORM",
   year: "MAR 2026 — PRESENT",
   description:
-    "A full-stack platform focused on business workflows, authentication, APIs, data management, and maintainable software architecture.",
-  tech: ["JAVA", "SPRING BOOT", "MONGODB", "REST API"],
+    "A full-stack platform for my family business that turns operational data into a foundation for intelligent, data-driven applications — now expanding toward predictive analytics and decision support.",
+  tech: ["NODE.JS", "EXPRESS", "MONGODB", "REST API", "PYTHON"],
   slug: "kaivan",
 };
 
@@ -62,62 +82,62 @@ const projects = [
     title: "CLOUD INFRASTRUCTURE MONITORING & INCIDENT MANAGEMENT",
     year: "AUG 2025 — PRESENT",
     description:
-      "A cloud infrastructure monitoring and incident management project focused on operational visibility, infrastructure health and incident workflows.",
-    tech: ["AWS", "AZURE", "CLOUD OPERATIONS"],
+      "Monitoring, troubleshooting and incident resolution across AWS and Azure — CloudWatch and Azure Monitor alerts, VNets, subnets, firewalls, IAM and SOP documentation.",
+    tech: ["AWS", "AZURE", "CLOUDWATCH", "AZURE MONITOR", "IAM"],
     slug: "cloud-infrastructure",
   },
   {
     number: "03",
-    title: "GEMINI AI CLONE",
+    title: "GEMINI AI CLONE — GENERATIVE AI ASSISTANT",
     year: "JAN 2024 — MAY 2024",
     description:
-      "A conversational AI web application built to explore API integration, application interfaces and interactive AI-powered workflows.",
-    tech: ["PYTHON", "APIS", "WEB APPLICATION"],
+      "A conversational AI assistant with a real-time chat interface, prompt processing, conversation handling and dynamic response rendering on top of an LLM backend.",
+    tech: ["PYTHON", "LLMS", "PROMPT ENGINEERING", "REACT"],
     slug: "gemini-ai-clone",
   },
   {
     number: "04",
-    title: "SUPERVISED CLASSIFICATION MODEL EVALUATION",
+    title: "SUPERVISED CLASSIFICATION — DIABETES PREDICTION",
     year: "JAN 2023 — APR 2023",
     description:
-      "A supervised classification project focused on evaluating machine learning models and comparing performance across different approaches.",
-    tech: ["PYTHON", "MACHINE LEARNING", "MODEL EVALUATION"],
+      "End-to-end pipeline comparing Random Forest, Decision Tree and LSTM with 10-fold cross-validation. The LSTM reached 0.81 AUC and 71.3% F1, outperforming the traditional models.",
+    tech: ["PYTHON", "SCIKIT-LEARN", "TENSORFLOW", "LSTM"],
     slug: "classification-model",
   },
   {
     number: "05",
-    title: "AMAZON API GATEWAY",
+    title: "AMAZON API GATEWAY — CLOUD API INTEGRATION",
     year: "MAR 2019 — AUG 2019",
     description:
-      "A project exploring API management and gateway architecture using Amazon Web Services.",
-    tech: ["AWS", "API GATEWAY", "CLOUD"],
+      "Designed, configured and tested RESTful APIs on Amazon API Gateway — resources, HTTP methods, request handling and backend endpoint integrations.",
+    tech: ["AWS", "API GATEWAY", "REST APIS"],
     slug: "amazon-api-gateway",
   },
   {
     number: "06",
-    title: "DELVE UNV",
+    title: "DELVE UNV — UNIVERSITY SEARCH PLATFORM",
     year: "2023",
     description:
-      "A web application developed with a Python-based backend and responsive frontend components.",
-    tech: ["DJANGO", "PYTHON", "HTML5", "CSS3", "BOOTSTRAP"],
+      "A team project at NJIT: a data-driven platform that helps international students discover and compare universities by program, location, tuition and eligibility.",
+    tech: ["PYTHON", "REACT", "SQL", "REST APIS"],
     slug: "delve-unv",
   },
   {
     number: "07",
-    title: "TURTLEBACK ZOO",
+    title: "TURTLEBACK ZOO — FULL-STACK APPLICATION",
     year: "NOV 2023 — DEC 2023",
     description:
-      "A database-driven web application implementing structured data management and CRUD functionality.",
-    tech: ["MYSQL", "SQL", "CRUD", "WEB APPLICATION"],
+      "A database-driven full-stack application for managing zoo operations — animals, buildings, attractions, employees and daily activities.",
+    tech: ["REACT", "NODE.JS", "SQL", "REST APIS"],
     slug: "turtleback-zoo",
   },
   {
     number: "08",
-    title: "DDOS DETECTION",
+    title: "DDOS DETECTION WITH SUPERVISED ML",
     year: "SEP 2022 — DEC 2022",
     description:
-      "A machine learning and cybersecurity project focused on identifying patterns associated with distributed denial-of-service attacks.",
-    tech: ["PYTHON", "MACHINE LEARNING", "CYBERSECURITY"],
+      "Classification pipeline on 4M+ KDD Cup 99 network records. Random Forest reached 97.5% accuracy, and threshold tuning cut false positives by over 35%.",
+    tech: ["PYTHON", "SCIKIT-LEARN", "RANDOM FOREST", "CYBERSECURITY"],
     slug: "ddos-detection",
   },
   {
@@ -125,8 +145,8 @@ const projects = [
     title: "AI-POWERED TRADING SIGNAL ASSISTANT",
     year: "JAN 2022 — APR 2022",
     description:
-      "An AI-powered application combining computer vision, an API backend and an interactive frontend.",
-    tech: ["AI/ML", "COMPUTER VISION", "FASTAPI", "REACT"],
+      "Analyzes candlestick chart images and video frames across 78+ patterns to generate Buy / Sell / Hold signals, with under 1.2s inference per image.",
+    tech: ["TENSORFLOW", "OPENCV", "FASTAPI", "REACT", "TYPESCRIPT"],
     slug: "trading-signal-assistant",
   },
   {
@@ -134,8 +154,8 @@ const projects = [
     title: "CUSTOMER CHURN PREDICTION",
     year: "OCT 2019 — DEC 2021",
     description:
-      "A predictive analytics project using machine learning and data analysis to study customer churn patterns.",
-    tech: ["PYTHON", "MACHINE LEARNING", "DATA ANALYSIS"],
+      "Predicts customer churn from historical customer and service data, comparing Logistic Regression, Decision Tree, Random Forest and SVM.",
+    tech: ["PYTHON", "PANDAS", "SCIKIT-LEARN", "SQL"],
     slug: "customer-churn",
   },
 ];
@@ -143,33 +163,28 @@ const projects = [
 const mindset = [
   {
     number: "01",
-    title: "UNDERSTAND THE PROBLEM",
-    accent: "PROBLEM",
-    text: "Build around the actual requirement, not the technology.",
+    title: "START FROM THE DECISION",
+    text: "Frame the model around who acts on it — a retention team reaching at-risk policyholders, a compliance team triaging the riskiest cases first.",
   },
   {
     number: "02",
-    title: "DESIGN THE SYSTEM",
-    accent: "SYSTEM",
-    text: "Think about APIs, data, services, infrastructure and how the pieces work together.",
+    title: "TRUST THE DATA FIRST",
+    text: "Validate before modeling: missing dates, duplicate records, inconsistent formats, and point-in-time features that prevent temporal leakage.",
   },
   {
     number: "03",
-    title: "BUILD FOR MAINTAINABILITY",
-    accent: "MAINTAINABILITY",
-    text: "Prefer clear architecture, readable code and predictable behavior.",
+    title: "EVALUATE HONESTLY",
+    text: "Pick the metric the business pays for — recall when a missed lapse costs more than a false alarm — and tune thresholds to match.",
   },
   {
     number: "04",
-    title: "IMPROVE ITERATIVELY",
-    accent: "ITERATIVELY",
-    text: "Build, test, observe, fix and refine.",
+    title: "SHIP IT AS SOFTWARE",
+    text: "FastAPI inference, Docker for consistent training and serving, GitHub Actions CI/CD, and experiments tracked in MLflow.",
   },
   {
     number: "05",
-    title: "SHIP",
-    accent: "SHIP",
-    text: "A system is valuable when it actually works in production.",
+    title: "WATCH IT IN PRODUCTION",
+    text: "Monitor inference latency, data drift and model degradation. A model is valuable when it keeps working after launch.",
   },
 ];
 
@@ -191,9 +206,9 @@ const education = [
 ];
 
 const aboutPanels = [
-  { number: "01", title: "ENGINEERING", items: ["SOFTWARE ARCHITECTURE", "BACKEND SYSTEMS", "APIS"] },
-  { number: "02", title: "DATA", items: ["DATA PROCESSING", "MACHINE LEARNING", "ANALYTICS"] },
-  { number: "03", title: "CLOUD", items: ["AWS", "AZURE", "INFRASTRUCTURE"] },
+  { number: "01", title: "MACHINE LEARNING", items: ["PREDICTIVE MODELS", "FEATURE ENGINEERING", "MODEL EVALUATION"] },
+  { number: "02", title: "GENERATIVE AI", items: ["RAG", "VECTOR SEARCH", "LLM APPLICATIONS"] },
+  { number: "03", title: "MLOPS", items: ["FASTAPI SERVING", "DOCKER / CI/CD", "MONITORING"] },
 ];
 
 function App() {
@@ -214,6 +229,21 @@ function App() {
     document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
     return () => observer.disconnect();
   }, []);
+
+  // Tilt the hero portrait toward the pointer (in degrees, via CSS variables).
+  const tiltPortrait = (event) => {
+    if (event.pointerType !== "mouse") return;
+    const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - left) / width - 0.5;
+    const y = (event.clientY - top) / height - 0.5;
+    event.currentTarget.style.setProperty("--tilt-y", (x * 16).toFixed(2));
+    event.currentTarget.style.setProperty("--tilt-x", (y * -12).toFixed(2));
+  };
+
+  const resetPortrait = (event) => {
+    event.currentTarget.style.setProperty("--tilt-x", "0");
+    event.currentTarget.style.setProperty("--tilt-y", "0");
+  };
 
   const scrollTo = (id) => {
     setMenuOpen(false);
@@ -236,7 +266,7 @@ function App() {
             <a href="https://github.com/telaprolupavan-byte" target="_blank" rel="noreferrer">
               GITHUB<span className="arrow-out">↗</span>
             </a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+            <a href="https://www.linkedin.com/in/pavan-telaprolu-52491694/" target="_blank" rel="noreferrer">
               LINKEDIN<span className="arrow-out">↗</span>
             </a>
             <a href="mailto:your.email@example.com">
@@ -271,34 +301,35 @@ function App() {
       <main>
         {/* 01 / HERO */}
 
-        <section id="home" className="hero">
+        <section id="home" className="hero" onPointerMove={tiltPortrait} onPointerLeave={resetPortrait}>
           <div className="hero-inner">
             <div className="hero-copy">
               <div className="hero-eyebrow">
                 <span className="tick"></span>
-                SOFTWARE ENGINEER / BUILDER
+                AI/ML ENGINEER / BUILDER
               </div>
 
               <h1 className="hero-title">
                 <span className="hero-line">PAVAN</span>
-                <span className="hero-line">SAGAR</span>
+                <span className="hero-line hero-line-portrait">
+                  SAGAR
+                  <span className="hero-portrait" aria-hidden="true">
+                    <span className="hero-portrait-tilt">
+                      <img src={heroImage} alt="" width="520" height="540" />
+                    </span>
+                  </span>
+                </span>
                 <span className="hero-line red">TELAPROLU</span>
               </h1>
 
-              <img
-                src={heroImage}
-                alt="Pavan Sagar Telaprolu"
-                className="hero-genemoji"
-              />
-
               <div className="hero-tags">
-                AI/ML ENGINEER <i>•</i> SOFTWARE ENGINEER <i>•</i> CLOUD
+                GENERATIVE AI <i>•</i> MACHINE LEARNING <i>•</i> MLOPS
               </div>
 
               <p className="hero-desc">
-                Building reliable software systems, data-driven applications, and
-                cloud infrastructure with a focus on clean architecture and
-                scalable engineering.
+                I build machine learning and LLM applications that make it to
+                production — from predictive models and RAG pipelines to the
+                APIs, containers and monitoring that keep them running.
               </p>
 
               <div className="hero-ctas">
@@ -321,7 +352,7 @@ function App() {
                 <div className="interface-top">
                   <div className="interface-id">
                     <strong>PAVAN TELAPROLU</strong>
-                    <span>SOFTWARE ENGINEER</span>
+                    <span>AI/ML ENGINEER</span>
                   </div>
                   <div className="interface-status">
                     <span>STATUS</span>
@@ -332,43 +363,43 @@ function App() {
                   </div>
                 </div>
 
-                <div className="interface-label">SYSTEM / ENGINEERING</div>
+                <div className="interface-label">SYSTEM / ML PIPELINE</div>
 
                 <div className="interface-diagram">
-                  <div className="diagram-block">CLIENT</div>
-                  <span className="diagram-link"></span>
-                  <div className="diagram-block">REST API</div>
-                  <span className="diagram-link"></span>
-                  <div className="diagram-block accent">SERVICES</div>
-                  <span className="diagram-link"></span>
                   <div className="diagram-block">DATA</div>
+                  <span className="diagram-link"></span>
+                  <div className="diagram-block">FEATURES</div>
+                  <span className="diagram-link"></span>
+                  <div className="diagram-block accent">MODEL</div>
+                  <span className="diagram-link"></span>
+                  <div className="diagram-block">API</div>
                 </div>
 
                 <div className="interface-rows">
                   <div className="interface-row">
-                    <span>ARCHITECTURE</span>
+                    <span>ML</span>
                     <i></i>
-                    <em>BACKEND / APIS</em>
+                    <em>XGBOOST / SCIKIT-LEARN</em>
                   </div>
                   <div className="interface-row">
-                    <span>DATA</span>
+                    <span>GENAI</span>
                     <i></i>
-                    <em>MONGODB / MYSQL</em>
+                    <em>RAG / PGVECTOR</em>
                   </div>
                   <div className="interface-row">
-                    <span>CLOUD</span>
+                    <span>MLOPS</span>
                     <i></i>
-                    <em>AWS / AZURE</em>
+                    <em>FASTAPI / DOCKER</em>
                   </div>
                 </div>
 
                 <div className="interface-stack">
                   <span>PYTHON</span>
-                  <span>JAVA</span>
-                  <span>SPRING BOOT</span>
+                  <span>PYTORCH</span>
+                  <span>GPT-4</span>
+                  <span>MLFLOW</span>
+                  <span>SNOWFLAKE</span>
                   <span>AWS</span>
-                  <span>MONGODB</span>
-                  <span>REACT</span>
                 </div>
 
                 <span className="panel-base" aria-hidden="true"></span>
@@ -377,41 +408,41 @@ function App() {
                   <div className="profile-mark">PST</div>
                   <div className="profile-chip-info">
                     <strong>PAVAN</strong>
-                    <span>SOFTWARE ENGINEER</span>
-                    <span>NJ / USA</span>
+                    <span>AI/ML ENGINEER</span>
+                    <span>HARRISON, NJ</span>
                   </div>
                 </div>
               </div>
 
               <div className="float-card float-1 glass">
                 <span className="float-num">01</span>
-                <span className="float-title">FULL-STACK<br />SYSTEMS</span>
+                <span className="float-title">PREDICTIVE<br />ML</span>
               </div>
 
               <div className="float-card float-2 glass">
                 <span className="float-num">02</span>
-                <span className="float-title">CLOUD<br />INFRASTRUCTURE</span>
+                <span className="float-title">LLM / RAG<br />APPLICATIONS</span>
               </div>
 
               <div className="float-card float-3 glass">
                 <span className="float-num">03</span>
-                <span className="float-title">DATA<br />ENGINEERING</span>
+                <span className="float-title">MLOPS<br />PIPELINES</span>
               </div>
             </div>
           </div>
 
           <div className="hero-meta meta-left">
             <span>BASED IN</span>
-            <strong>NEW JERSEY / USA</strong>
+            <strong>HARRISON, NEW JERSEY / USA</strong>
           </div>
 
           <div className="hero-meta meta-right">
-            <span>STATUS</span>
-            <strong>AVAILABLE FOR SELECTED PROJECTS</strong>
+            <span>CURRENTLY</span>
+            <strong>AI/ML ENGINEER @ LUCID SOFTWARE</strong>
           </div>
 
           <div className="hero-foot">
-            <span className="hero-foot-label">ENGINEERED FOR SCALABILITY</span>
+            <span className="hero-foot-label">FROM DATA TO PRODUCTION</span>
             <span className="hero-foot-line" aria-hidden="true"></span>
             <span className="hero-foot-label">SCROLL</span>
           </div>
@@ -444,6 +475,9 @@ function App() {
 
                 <div className="experience-side">
                   <p>{item.description}</p>
+                  <ul className="experience-highlights">
+                    {item.highlights.map((point) => <li key={point}>{point}</li>)}
+                  </ul>
                   <div className="tech-tags">
                     {item.tech.map((tag) => <span key={tag}>{tag}</span>)}
                   </div>
@@ -467,11 +501,7 @@ function App() {
               </h2>
 
               <div className="stack-meta reveal">
-                <span>LANGUAGES</span>
-                <span>BACKEND</span>
-                <span>DATA</span>
-                <span>CLOUD / INFRASTRUCTURE</span>
-                <span>FRONTEND</span>
+                {stack.map((group) => <span key={group.number}>{group.title}</span>)}
               </div>
             </div>
 
@@ -539,13 +569,13 @@ function App() {
                   <span className="kaivan-arrow">↓</span>
                   <div className="kaivan-node">REST API</div>
                   <span className="kaivan-arrow">↓</span>
-                  <div className="kaivan-node accent">SPRING BOOT</div>
+                  <div className="kaivan-node accent">NODE / EXPRESS</div>
                   <span className="kaivan-arrow">↓</span>
                   <div className="kaivan-node">MONGODB</div>
                 </div>
 
                 <div className="kaivan-note">
-                  AUTHENTICATION / BUSINESS LOGIC / DATA MANAGEMENT
+                  BUSINESS DATA / REST APIS / AI/ML-READY
                 </div>
               </div>
             </div>
@@ -594,27 +624,30 @@ function App() {
 
               <div className="about-profile reveal">
                 <strong>PAVAN SAGAR TELAPROLU</strong>
-                <span>SOFTWARE ENGINEER</span>
+                <span>AI/ML ENGINEER</span>
                 <div className="about-focus">
                   <em>FOCUS</em>
-                  <span>SOFTWARE / DATA / CLOUD / AUTOMATION</span>
+                  <span>ML / GENERATIVE AI / RAG / MLOPS</span>
                 </div>
               </div>
             </div>
 
             <div className="about-right">
               <p className="about-lede reveal">
-                I build software with a focus on how systems actually work —
-                from APIs and backend services to data, cloud infrastructure,
-                automation, and user-facing applications.
+                AI/ML Engineer focused on building practical machine learning
+                and AI applications, with a strong foundation in Python,
+                software engineering, data processing and backend development.
               </p>
 
               <p className="about-copy-text reveal">
-                I&apos;m Pavan Sagar Telaprolu, a Software Engineer working
-                across software development, data, cloud infrastructure,
-                automation, and machine learning. The emphasis is on building
-                practical, maintainable software and understanding how systems
-                work end-to-end.
+                At Lucid Software I build compliance-risk models and RAG-based
+                semantic search with GPT-4 and pgvector. Before that, at
+                Prudential Financial, I built a lapse prediction model on 2M+
+                policy records, trained XGBoost and LightGBM, tracked
+                experiments in MLflow and shipped it with Docker, FastAPI and
+                GitHub Actions. I care about the whole path: clean data, honest
+                evaluation, and models that are served, monitored and actually
+                used.
               </p>
 
               <div className="about-panels">
@@ -698,7 +731,7 @@ function App() {
 
           <div className="contact-identity reveal">
             <strong>PAVAN SAGAR TELAPROLU</strong>
-            <span>SOFTWARE ENGINEER</span>
+            <span>AI/ML ENGINEER</span>
           </div>
 
           <div className="contact-links reveal">
@@ -710,7 +743,7 @@ function App() {
               <span className="contact-link-label">GITHUB</span>
               <ArrowUpRight size={20} />
             </a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+            <a href="https://www.linkedin.com/in/pavan-telaprolu-52491694/" target="_blank" rel="noreferrer">
               <span className="contact-link-label">LINKEDIN</span>
               <ArrowUpRight size={20} />
             </a>
@@ -727,14 +760,14 @@ function App() {
         </div>
 
         <div className="footer-role">
-          <span>SOFTWARE ENGINEER</span>
+          <span>AI/ML ENGINEER</span>
         </div>
 
         <div className="footer-links">
           <a href="https://github.com/telaprolupavan-byte" target="_blank" rel="noreferrer">
             GITHUB<span className="arrow-out">↗</span>
           </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+          <a href="https://www.linkedin.com/in/pavan-telaprolu-52491694/" target="_blank" rel="noreferrer">
             LINKEDIN<span className="arrow-out">↗</span>
           </a>
           <a href="mailto:your.email@example.com">
