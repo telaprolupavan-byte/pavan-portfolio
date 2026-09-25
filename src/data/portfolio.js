@@ -118,6 +118,52 @@ export const projects = [
     note: "RISK MODELS / SEMANTIC SEARCH / GROUNDED ANALYSIS",
   },
   {
+    slug: "ai-job-intelligence",
+    title: "NERO AI JOB INTELLIGENCE",
+    listTitle: "NERO AI JOB INTELLIGENCE — EVIDENCE-BASED JOB SEARCH",
+    category: "GENERATIVE AI · FULL-STACK PLATFORM",
+    dates: "SEP 2026 — PRESENT",
+    summary:
+      "A job search platform that discovers jobs, filters out the ones a candidate can't take, and decodes each job description into evidence-backed requirements. Deterministic engines score ATS alignment and job match, analyze gaps and rank what to apply to first.",
+    tags: ["LLMS", "FASTAPI", "POSTGRESQL", "NEXT.JS", "AI EVALUATION"],
+    description:
+      "NERO is an end-to-end job search platform that turns raw job descriptions into structured, evidence-backed requirements and helps a candidate decide which jobs to apply to, with which resume.",
+    tech: ["PYTHON", "FASTAPI", "PYDANTIC", "SQLALCHEMY", "ALEMBIC", "POSTGRESQL", "OPENAI STRUCTURED OUTPUTS", "NEXT.JS", "REACT", "TYPESCRIPT", "TAILWIND", "DOCKER", "GITHUB ACTIONS", "PYTEST", "VITEST"],
+    overview:
+      "Jobs are discovered from job boards such as Greenhouse on a schedule, then normalized and deduplicated. For each user, a hard-eligibility pre-filter removes jobs they can't take (employment type, location, remote arrangement, sponsorship, citizenship, clearance). Job Intelligence then decodes each JD into a versioned contract that keeps required and preferred skills, experience, compensation and work authorization separate. ATS Alignment, Job Match, Gap Analysis and Priority Ranking all build on that contract without re-parsing the JD.",
+    context:
+      "The core design rule is that AI interprets and deterministic code scores. LLM output goes through a closed schema, and every claim must quote evidence that actually appears in the source text, which blocks hallucinated requirements and prompt injection hidden in a JD or resume. Missing job data resolves to UNKNOWN, never to a silent rejection. Every analysis is versioned and insert-only, so past results never change after a resume edit.",
+    results: [
+      { label: "EVIDENCE GROUNDING", value: "42/42" },
+      { label: "REQUIRED-SKILL P / R", value: "1.0" },
+      { label: "TEST FILES", value: "110+" },
+    ],
+    focus: [
+      {
+        title: "JOB INTELLIGENCE",
+        text: "Deterministic extraction followed by schema-constrained LLM decoding (OpenAI Structured Outputs), merged by a validator that rejects any claim whose evidence isn't a substring of the JD. Skills resolve through one canonical vocabulary, so k8s maps to Kubernetes while Python and PyTorch stay distinct.",
+      },
+      {
+        title: "ELIGIBILITY & MATCHING",
+        text: "A hard-eligibility pre-filter returns ELIGIBLE, INELIGIBLE or UNKNOWN with explainable checks, and no high score can override it. Job Match and ATS Alignment are kept as separate scores. ATS Alignment weights requirement coverage (40%), keyword alignment (25%), demonstrated evidence (25%) and resume parseability (10%).",
+      },
+      {
+        title: "GAPS & RESUME IMPROVEMENT",
+        text: "Gap analysis explains why each unmet requirement is a gap and what the candidate could truthfully do about it. Suggestions the candidate approves become a new resume version, which is rechecked with the ATS engine and compared with the original.",
+      },
+      {
+        title: "AI EVALUATION",
+        text: "A hand-labelled evaluation dataset of resumes, jobs, match cases and ranking pairs measures precision, recall, evidence grounding and injection detection, with a committed baseline for regression checks. Weak spots it found, such as OR-alternative handling, are recorded as follow-up tickets rather than hidden.",
+      },
+      {
+        title: "PLATFORM",
+        text: "FastAPI and PostgreSQL with Alembic migrations, authentication and rate limiting, a Next.js + TypeScript frontend, a Docker Compose stack with a discovery scheduler, and CI on GitHub Actions.",
+      },
+    ],
+    architecture: ["DISCOVERY", "ELIGIBILITY", "JOB INTELLIGENCE", "ATS / MATCH", "GAPS", "PRIORITY"],
+    repo: "https://github.com/telaprolupavan-byte/ai-job-intelligence",
+  },
+  {
     slug: "lapse-prediction",
     title: "LAPSE PREDICTION",
     listTitle: "POLICY LAPSE PREDICTION",
