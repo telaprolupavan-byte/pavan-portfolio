@@ -358,6 +358,7 @@ export const projects = [
     ],
     architecture: ["CLIENT", "REST API", "NODE / EXPRESS", "MONGODB"],
     repo: "https://github.com/telaprolupavan-byte/KAivan",
+    logo: "/logos/kaivan.svg",
   },
   {
     slug: "trading-signal-assistant",

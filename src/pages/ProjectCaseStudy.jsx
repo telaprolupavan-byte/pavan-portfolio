@@ -67,6 +67,8 @@ function ProjectCaseStudy() {
             01 / PROJECT {project.number}
           </div>
 
+          {project.logo && <img className="case-logo" src={project.logo} alt={`${project.title} logo`} />}
+
           <small>{project.category}</small>
 
           <h1 style={{ "--title-chars": longestWord(project.title) + 1 }}>
