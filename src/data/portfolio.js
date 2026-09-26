@@ -250,6 +250,8 @@ export const projects = [
       "Keep dotted skill names such as Next.js and Node.js intact during extraction.",
     ],
     repo: "https://github.com/telaprolupavan-byte/ai-job-intelligence",
+    logo: "/logos/nero.webp",
+    logoSize: "large",
   },
   {
     slug: "lfras-ai",
