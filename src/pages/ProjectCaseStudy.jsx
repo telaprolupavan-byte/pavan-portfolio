@@ -67,7 +67,13 @@ function ProjectCaseStudy() {
             01 / PROJECT {project.number}
           </div>
 
-          {project.logo && <img className="case-logo" src={project.logo} alt={`${project.title} logo`} />}
+          {project.logo && (
+            <img
+              className={`case-logo ${project.logoSize === "large" ? "case-logo-large" : ""}`}
+              src={project.logo}
+              alt={`${project.title} logo`}
+            />
+          )}
 
           <small>{project.category}</small>
 

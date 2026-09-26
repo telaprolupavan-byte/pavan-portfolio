@@ -2346,6 +2346,11 @@ footer {
   filter: drop-shadow(0 0 28px rgba(239, 21, 29, 0.3)) drop-shadow(0 18px 30px rgba(0, 0, 0, 0.6));
 }
 
+.case-logo-large {
+  height: clamp(140px, 15vw, 220px);
+  filter: drop-shadow(0 0 36px rgba(40, 110, 255, 0.28)) drop-shadow(0 20px 34px rgba(0, 0, 0, 0.6));
+}
+
 .case-hero .case-logo + small {
   margin-top: 28px;
 }
